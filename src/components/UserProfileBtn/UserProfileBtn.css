@@ -1,0 +1,15 @@
+.profile-btn {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.3rem;
+    height: 2.3rem;
+    border-radius: 50%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background: rgb(236, 236, 236);
+}
+
+.profile-btn:hover {
+    box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 20px;
+}

@@ -1,0 +1,39 @@
+.card-header {
+    /* border: 2px solid blue; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header .title {
+    /* border: 2px solid salmon; */
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* .card-header .button-grp {
+    border: 2px solid salmon;
+} */
+
+/* .card-body {
+    border: 2px solid green;
+} */
+
+.card-footer {
+    /* border: 2px solid purple; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* .card-footer .status {
+    border: 2px solid salmon;
+} */
+
+.card-footer .deadline {
+    /* border: 2px solid salmon; */
+    color: red;
+}
+
+/* .card-footer .profile {
+    border: 2px solid salmon;
+} */

@@ -1,0 +1,14 @@
+.card-layout {
+    /* border: 2px solid red; */
+    width: 18rem;
+    border-radius: .5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+    background: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    justify-self: center;
+    height: fit-content;
+    z-index: 5;
+}
