@@ -1,7 +1,7 @@
 import React from "react";
 import "./UserCard.css";
 import UserCardLayout from "../../layouts/UserCardLayout/UserCardLayout";
-import ProfileImg from "./ProfileImg";
+import ProfileImg from "../ProfileImg/ProfileImg";
 
 const UserCard = () => {
   return (

@@ -20,20 +20,43 @@
 
 .card-footer {
     /* border: 2px solid purple; */
+    /* display: grid; */
+    /* grid-template-columns: repeat(3, 1fr); */
     display: flex;
+    /* grid-auto-flow: column; */
     justify-content: space-between;
     align-items: center;
 }
 
-/* .card-footer .status {
-    border: 2px solid salmon;
-} */
+.card-footer .status {
+    /* border: 2px solid salmon; */
+    height: fit-content;
+}
 
 .card-footer .deadline {
     /* border: 2px solid salmon; */
+    height: fit-content;
     color: red;
 }
 
-/* .card-footer .profile {
-    border: 2px solid salmon;
-} */
+.card-footer .profile {
+    /* border: 2px solid salmon; */
+    border-radius: 50%;
+    background: rgba(243, 241, 241, 0.451);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .3rem;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.card-footer .profile:hover {
+    box-shadow: none;
+}
+
+.card-footer .profile img {
+    width: 100%;
+}
