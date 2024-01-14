@@ -2,6 +2,14 @@
     position: relative;
 }
 
+.dropdown-layout .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: capitalize;
+    column-gap: .5rem;
+}
+
 .option-layout {
     /* border: 1px solid red; */
     background: #fff;
@@ -34,6 +42,7 @@
     align-items: center;
 }
 
+.dropdown-layout svg,
 .option-layout svg {
     width: .8rem;
     padding: 0px;

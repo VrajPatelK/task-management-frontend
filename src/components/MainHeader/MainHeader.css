@@ -1,0 +1,28 @@
+.main-header .page-title {
+    /* background: lightcoral; */
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+.main-header .serach-bar {
+    /* background: lightgreen; */
+    grid-column: 2/3;
+    grid-row: 1/2;
+    justify-self: end;
+}
+
+.main-header .filters {
+    /* background: lightseagreen; */
+    grid-column: 1/3;
+    grid-row: 2/3;
+    display: flex;
+    column-gap: .8rem;
+    /* align-self: self-end; */
+}
+
+.main-header .dropdown-div {
+    width: fit-content;
+}

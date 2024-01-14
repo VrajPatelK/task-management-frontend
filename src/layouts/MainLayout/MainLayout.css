@@ -1,0 +1,48 @@
+.main-layout {
+    /* background: red; */
+    display: grid;
+    grid-template-columns: .4fr 2fr;
+    grid-template-rows: .5fr 4fr .1fr;
+    height: 100%;
+    position: relative;
+}
+
+
+.main-layout .navbar-sidebar {
+    background: #031926;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    /* 16.67% = 0.4fr */
+    width: 16.67%;
+    overflow-y: auto;
+}
+
+
+.main-layout .main-header,
+.main-layout .body,
+.main-layout .footer {
+    /* start/end */
+    grid-column: 2/4;
+}
+
+.main-layout .main-header {
+    /* border: 2px solid red; */
+    background: #fff;
+    padding: 2rem;
+    padding-bottom: 0rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 1.5rem;
+}
+
+.main-layout .body {
+    /* background: lightblue; */
+    padding: 2rem;
+}
+
+.main-layout .footer {
+    /* background: olive; */
+    margin-top: auto;
+}

@@ -1,0 +1,24 @@
+.navbar {
+    /* border: 2px solid blue; */
+    display: flex;
+    flex-direction: column;
+}
+
+.manubar-layout {
+    /* border: 2px solid greenyellow; */
+    margin-top: .7rem;
+    display: grid;
+}
+
+.manubar-layout .menu {
+    /* border: 2px solid #fff; */
+    color: #fff;
+    padding: .5rem;
+    text-decoration: none;
+    border-left: 3px solid #031926;
+}
+
+.active-menu {
+    background: #142650;
+    border-left: 3px solid blue !important;
+}

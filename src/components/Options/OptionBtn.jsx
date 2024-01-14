@@ -1,7 +1,7 @@
 import React from "react";
 import "./Options.css";
 
-const OptionBtn = ({ children, style, onAction }) => {
+const OptionBtn = ({ children, style = { color: "#747d8c" }, onAction }) => {
   return (
     <>
       <button

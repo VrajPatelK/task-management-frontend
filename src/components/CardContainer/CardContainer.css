@@ -2,5 +2,5 @@
     /* border: 2px solid red; */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    row-gap: 2rem;
+    gap: 2rem;
 }
