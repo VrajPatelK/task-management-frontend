@@ -1,17 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./UsersPage.css";
 import UserCard from "../../components/UserCard/UserCard";
 import UserCardContainer from "../../components/UserCardContainer/UserCardContainer";
+import { getUsers } from "../../apis/users";
 
 const UsersPage = () => {
+  const [users, setUsers] = useState([]);
+  const [loader, setLoader] = useState(true);
+  const [error, setError] = useState(undefined);
+
+  useEffect(() => {
+    getUsers("/users/user_type/developer")
+      .then((users) => {
+        setUsers(users);
+        setLoader(false);
+      })
+      .catch((error) => {
+        setError("Client Error : user fetch failure");
+        setLoader(false);
+      });
+  }, []);
+
+  if (loader) {
+    return <div>Loading user data...</div>;
+  }
+  if (!loader && error) {
+    return <div>{error}</div>;
+  }
+  if (!loader && !error && users.length === 0) {
+    return <div>users are not found</div>;
+  }
+
   return (
     <UserCardContainer>
-      <UserCard></UserCard>
-      <UserCard></UserCard>
-      <UserCard></UserCard>
-      <UserCard></UserCard>
-      <UserCard></UserCard>
-      <UserCard></UserCard>
+      {users.map((user) => {
+        return (
+          <UserCard
+            key={user.id}
+            email={user.email}
+            username={user.username}
+            src={user.profile_img}
+            user_type={user.user_type}
+          />
+        );
+      })}
     </UserCardContainer>
   );
 };

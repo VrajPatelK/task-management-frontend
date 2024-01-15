@@ -3,23 +3,19 @@ import "./UserCard.css";
 import UserCardLayout from "../../layouts/UserCardLayout/UserCardLayout";
 import ProfileImg from "../ProfileImg/ProfileImg";
 
-const UserCard = () => {
+const UserCard = ({ src, email, username, user_type }) => {
   return (
     <UserCardLayout>
       <div className="profile-img-div">
-        <ProfileImg
-          src={
-            "https://firebasestorage.googleapis.com/v0/b/task-management-fbb64.appspot.com/o/profile_images%2Fdefault-profile-img.png?alt=media&token=dbab22ee-13fe-4b80-b7a5-7209944a775a"
-          }
-          alt={"profile.img"}
-        />
+        <ProfileImg src={src} alt={username} />
       </div>
       <div className="user-details">
         <div className="username">
-          <span>@</span>Username
+          <span>@</span>
+          {username}
         </div>
-        <div className="email">abc@gmail.com</div>
-        <div>developer</div>
+        <div className="email">{email}</div>
+        <div>{user_type}</div>
       </div>
     </UserCardLayout>
   );
