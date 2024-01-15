@@ -1,6 +1,6 @@
-async function getUsers(apiEndPoint) {
+async function getTasks(apiEndPoint) {
   const response = await fetch(
-    `${process.env.REACT_APP_SERVER_DOMAIN}/api/v1/users${apiEndPoint}`,
+    `${process.env.REACT_APP_SERVER_DOMAIN}/api/v1/tasks${apiEndPoint}`,
     {
       headers: {
         authCookie:
@@ -12,4 +12,4 @@ async function getUsers(apiEndPoint) {
   return responseData;
 }
 
-export { getUsers };
+export { getTasks };

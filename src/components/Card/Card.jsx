@@ -15,10 +15,16 @@ const Card = ({
   profile_img,
   assigned_to,
   username,
+  displayProfileIcon = true,
+  displayEditDelete = true,
 }) => {
   return (
     <CardLayout>
-      <CardHeader title={title} assigned_to={assigned_to} />
+      <CardHeader
+        title={title}
+        assigned_to={assigned_to}
+        displayEditDelete={displayEditDelete}
+      />
       <CardBody description={description} />
       <CardFooter
         deadline={deadline}
@@ -26,6 +32,7 @@ const Card = ({
         profile_img={profile_img}
         assigned_to={assigned_to}
         username={username}
+        displayProfileIcon={displayProfileIcon}
       />
     </CardLayout>
   );

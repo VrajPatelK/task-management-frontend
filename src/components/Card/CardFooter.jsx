@@ -6,8 +6,16 @@ import Pending from "../icons/Pending";
 import InProgress from "../icons/InProgress";
 import Completed from "../icons/Completed";
 import OptionBtn from "../Options/OptionBtn";
+import { Link } from "react-router-dom";
 
-const CardFooter = ({ status, deadline, profile_img, username }) => {
+const CardFooter = ({
+  status,
+  deadline,
+  profile_img,
+  username,
+  assigned_to,
+  displayProfileIcon,
+}) => {
   var formatedDate = moment(deadline).format("D-MM-YYYY");
 
   return (
@@ -27,9 +35,13 @@ const CardFooter = ({ status, deadline, profile_img, username }) => {
         </OptionBtn>
       </OptionsLayout>
       <div className="deadline">{formatedDate}</div>
-      <div className="profile">
-        <ProfileImg src={profile_img} alt={username} />
-      </div>
+      {displayProfileIcon && (
+        <div className="profile">
+          <Link to={`/users/${assigned_to}`}>
+            <ProfileImg src={profile_img} alt={username} />
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

@@ -7,7 +7,8 @@ import Email from "../../components/icons/Email";
 import Mobile from "../../components/icons/Mobile";
 
 import { useParams } from "react-router-dom";
-import { getTasks, getUsers } from "../../apis/users";
+import { getUsers } from "../../apis/users";
+import { getTasks } from "../../apis/tasks";
 
 const UserPage = () => {
   const { userId } = useParams();
@@ -73,6 +74,8 @@ const UserPage = () => {
             deadline={task.deadline}
             assigned_to={task.assigned_to}
             username={task.username}
+            displayProfileIcon={false}
+            displayEditDelete={false}
           />
         );
       })
