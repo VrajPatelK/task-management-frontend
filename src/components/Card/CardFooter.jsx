@@ -51,7 +51,6 @@ const CardFooter = ({
     } else if (updatedStatus === "completed") {
       setTaskStatus(forCompleted);
     }
-    console.log(result);
   }
 
   return (
