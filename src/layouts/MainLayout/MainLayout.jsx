@@ -2,8 +2,7 @@ import React from "react";
 import "./MainLayout.css";
 import Navbar from "../../components/Navbar/Navbar";
 import MainHeader from "../../components/MainHeader/MainHeader";
-import CardContainer from "../../components/CardContainer/CardContainer";
-import Card from "../../components/Card/Card";
+import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   return (
@@ -15,20 +14,7 @@ const MainLayout = () => {
         <MainHeader />
       </div>
       <div className="body">
-        <CardContainer>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-        </CardContainer>
+        <Outlet />
       </div>
       <div className="footer">footer</div>
     </div>
