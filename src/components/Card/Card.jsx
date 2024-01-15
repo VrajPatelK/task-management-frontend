@@ -33,6 +33,7 @@ const Card = ({
         assigned_to={assigned_to}
         username={username}
         displayProfileIcon={displayProfileIcon}
+        taskId={taskId}
       />
     </CardLayout>
   );
