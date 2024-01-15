@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import ProfileImg from "../ProfileImg/ProfileImg";
 import OptionsLayout from "../../layouts/OptionsLayout/OptionsLayout";
 import Pending from "../icons/Pending";
@@ -6,10 +7,12 @@ import InProgress from "../icons/InProgress";
 import Completed from "../icons/Completed";
 import OptionBtn from "../Options/OptionBtn";
 
-const CardFooter = () => {
+const CardFooter = ({ status, deadline, profile_img, username }) => {
+  var formatedDate = moment(deadline).format("D-MM-YYYY");
+
   return (
     <div className="card-footer">
-      <OptionsLayout title={"status"}>
+      <OptionsLayout title={status}>
         <OptionBtn style={{ color: "#3742fa" }} onAction={() => {}}>
           pending
           <Pending />
@@ -23,14 +26,9 @@ const CardFooter = () => {
           <Completed />
         </OptionBtn>
       </OptionsLayout>
-      <div className="deadline">deadline</div>
+      <div className="deadline">{formatedDate}</div>
       <div className="profile">
-        <ProfileImg
-          src={
-            "https://firebasestorage.googleapis.com/v0/b/task-management-fbb64.appspot.com/o/profile_images%2Fdefault-profile-img.png?alt=media&token=dbab22ee-13fe-4b80-b7a5-7209944a775a"
-          }
-          alt={"profile.img"}
-        />
+        <ProfileImg src={profile_img} alt={username} />
       </div>
     </div>
   );

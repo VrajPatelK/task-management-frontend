@@ -6,12 +6,27 @@ import CardFooter from "./CardFooter";
 
 import "./Card.css";
 
-const Card = () => {
+const Card = ({
+  taskId,
+  title,
+  description,
+  deadline,
+  status,
+  profile_img,
+  assigned_to,
+  username,
+}) => {
   return (
     <CardLayout>
-      <CardHeader></CardHeader>
-      <CardBody></CardBody>
-      <CardFooter></CardFooter>
+      <CardHeader title={title} assigned_to={assigned_to} />
+      <CardBody description={description} />
+      <CardFooter
+        deadline={deadline}
+        status={status}
+        profile_img={profile_img}
+        assigned_to={assigned_to}
+        username={username}
+      />
     </CardLayout>
   );
 };

@@ -3,6 +3,7 @@ import "./UsersPage.css";
 import UserCard from "../../components/UserCard/UserCard";
 import UserCardContainer from "../../components/UserCardContainer/UserCardContainer";
 import { getUsers } from "../../apis/users";
+import { Link } from "react-router-dom";
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -10,19 +11,19 @@ const UsersPage = () => {
   const [error, setError] = useState(undefined);
 
   useEffect(() => {
-    getUsers("/users/user_type/developer")
+    getUsers("/user_type/developer")
       .then((users) => {
         setUsers(users);
         setLoader(false);
       })
       .catch((error) => {
-        setError("Client Error : user fetch failure");
+        setError("Client Error : users fetch failure");
         setLoader(false);
       });
   }, []);
 
   if (loader) {
-    return <div>Loading user data...</div>;
+    return <div>Loading users data...</div>;
   }
   if (!loader && error) {
     return <div>{error}</div>;
@@ -35,13 +36,14 @@ const UsersPage = () => {
     <UserCardContainer>
       {users.map((user) => {
         return (
-          <UserCard
-            key={user.id}
-            email={user.email}
-            username={user.username}
-            src={user.profile_img}
-            user_type={user.user_type}
-          />
+          <Link to={`/users/${user.id}`} key={user.id}>
+            <UserCard
+              email={user.email}
+              username={user.username}
+              src={user.profile_img}
+              user_type={user.user_type}
+            />
+          </Link>
         );
       })}
     </UserCardContainer>

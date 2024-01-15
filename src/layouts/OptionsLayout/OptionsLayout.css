@@ -1,5 +1,6 @@
 .option-layout {
     position: relative;
+    z-index: 10;
 }
 
 .dropdown-layout .title {

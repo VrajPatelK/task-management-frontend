@@ -6,7 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 const Navbar = () => {
   const location = useLocation();
 
-  const isActive = (to) => location.pathname === to;
+  const isActive = (to) => location.pathname.includes(to);
 
   return (
     <div className="navbar">
