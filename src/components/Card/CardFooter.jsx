@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import ProfileImg from "../ProfileImg/ProfileImg";
 import OptionsLayout from "../../layouts/OptionsLayout/OptionsLayout";
@@ -15,6 +15,7 @@ import {
   active_background,
 } from "../../utils/vars";
 import { updateTaskStatus } from "../../apis/tasks";
+import toast from "react-hot-toast";
 
 const CardFooter = ({
   taskId,
@@ -41,7 +42,7 @@ const CardFooter = ({
 
   // handlers
   async function changeStatusHandler(updatedStatus) {
-    const result = await updateTaskStatus(`/${taskId}`, {
+    await updateTaskStatus(`/${taskId}`, {
       status: updatedStatus,
     });
     if (updatedStatus === "pending") {
@@ -51,6 +52,7 @@ const CardFooter = ({
     } else if (updatedStatus === "completed") {
       setTaskStatus(forCompleted);
     }
+    toast.success("status updated!");
   }
 
   return (
