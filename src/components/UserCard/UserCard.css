@@ -15,11 +15,12 @@
 
 .user-details .email {
     color: silver;
+    font-size: .8rem;
 }
 
 .user-card-layout .profile-img-div {
-    /* border: 2px solid red; */
+    border: 2px solid rgba(128, 128, 128, 0.104);
     height: fit-content;
-    border-radius: 50%;
+    border-radius: .5rem;
     padding: .1rem;
 }
