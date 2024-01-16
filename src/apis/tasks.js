@@ -12,7 +12,7 @@ async function getTasks(apiEndPoint) {
   return responseData;
 }
 
-async function updateTaskStatus(apiEndPoint, body) {
+async function updateTaskStatus({ apiEndPoint, body }) {
   const response = await fetch(
     `${process.env.REACT_APP_SERVER_DOMAIN}/api/v1/tasks/edit/status${apiEndPoint}`,
     {

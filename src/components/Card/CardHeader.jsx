@@ -6,12 +6,22 @@ import Delete from "../icons/Delete";
 import OptionBtn from "../Options/OptionBtn";
 import { deleteTask } from "../../apis/tasks";
 import toast from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query";
+import { queryClient } from "../../utils/vars";
 
 const CardHeader = ({ taskId, title, assigned_to, displayEditDelete }) => {
+  const { mutate } = useMutation({
+    mutationFn: deleteTask,
+  });
+
   // handlers
   async function taskDeleteHandler() {
-    await deleteTask(`/${taskId}`);
-    toast.success("task deleted!");
+    mutate(`/${taskId}`, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["tasks"] });
+        toast.success("task deleted!");
+      },
+    });
   }
 
   return (

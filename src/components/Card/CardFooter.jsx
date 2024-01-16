@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import moment from "moment";
 import ProfileImg from "../ProfileImg/ProfileImg";
 import OptionsLayout from "../../layouts/OptionsLayout/OptionsLayout";
@@ -13,9 +13,11 @@ import {
   forInProgress,
   forPeding,
   active_background,
+  queryClient,
 } from "../../utils/vars";
 import { updateTaskStatus } from "../../apis/tasks";
 import toast from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query";
 
 const CardFooter = ({
   taskId,
@@ -27,32 +29,41 @@ const CardFooter = ({
   displayProfileIcon,
 }) => {
   // state
-  var initial_state = { name: status, color: "gray", icon: "" };
+  var statusProperty = { color: "gray", icon: "" };
   if (status === "pending") {
-    initial_state = forPeding;
+    statusProperty = forPeding;
   } else if (status === "in-progress") {
-    initial_state = forInProgress;
+    statusProperty = forInProgress;
   } else if (status === "completed") {
-    initial_state = forCompleted;
+    statusProperty = forCompleted;
   }
-  const [taskStatus, setTaskStatus] = useState(initial_state);
 
   // date formation
   var formatedDate = moment(deadline).format("D-MM-YYYY");
 
+  // use mutation
+  const { mutate } = useMutation({
+    mutationFn: updateTaskStatus,
+  });
+
   // handlers
   async function changeStatusHandler(updatedStatus) {
-    await updateTaskStatus(`/${taskId}`, {
-      status: updatedStatus,
-    });
-    if (updatedStatus === "pending") {
-      setTaskStatus(forPeding);
-    } else if (updatedStatus === "in-progress") {
-      setTaskStatus(forInProgress);
-    } else if (updatedStatus === "completed") {
-      setTaskStatus(forCompleted);
-    }
-    toast.success("status updated!");
+    mutate(
+      { apiEndPoint: `/${taskId}`, body: { status: updatedStatus } },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["tasks"] });
+          if (updatedStatus === "pending") {
+            statusProperty = forPeding;
+          } else if (updatedStatus === "in-progress") {
+            statusProperty = forInProgress;
+          } else if (updatedStatus === "completed") {
+            statusProperty = forCompleted;
+          }
+          toast.success("status updated!");
+        },
+      }
+    );
   }
 
   return (
@@ -61,17 +72,17 @@ const CardFooter = ({
         title={
           <SmallBadge
             style={{
-              color: taskStatus.color,
+              color: statusProperty.color,
             }}
           >
-            {taskStatus.icon}
+            {statusProperty.icon}
           </SmallBadge>
         }
       >
         <OptionBtn
           style={{
             color: "#3742fa",
-            background: taskStatus.name === "pending" && active_background,
+            background: status === "pending" && active_background,
           }}
           onAction={() => changeStatusHandler("pending")}
         >
@@ -81,7 +92,7 @@ const CardFooter = ({
         <OptionBtn
           style={{
             color: "#ffa502",
-            background: taskStatus.name === "in-progress" && active_background,
+            background: status === "in-progress" && active_background,
           }}
           onAction={() => changeStatusHandler("in-progress")}
         >
@@ -91,7 +102,7 @@ const CardFooter = ({
         <OptionBtn
           style={{
             color: "#2ed573",
-            background: taskStatus.name === "completed" && active_background,
+            background: status === "completed" && active_background,
           }}
           onAction={() => changeStatusHandler("completed")}
         >

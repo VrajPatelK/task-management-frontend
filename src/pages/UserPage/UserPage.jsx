@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./UserPage.css";
 import ProfileImg from "../../components/ProfileImg/ProfileImg";
 import Card from "../../components/Card/Card";
@@ -9,60 +9,52 @@ import Mobile from "../../components/icons/Mobile";
 import { useParams } from "react-router-dom";
 import { getUsers } from "../../apis/users";
 import { getTasks } from "../../apis/tasks";
+import { useQuery } from "@tanstack/react-query";
 
 const UserPage = () => {
   const { userId } = useParams();
 
-  const [user, setUser] = useState(null);
-  const [userLoader, setUserLoader] = useState(true);
-  const [error, setError] = useState(undefined);
+  const {
+    data: userData,
+    isLoading: userLoader,
+    isError: isUserError,
+    error: userError,
+  } = useQuery({
+    queryFn: () => getUsers(`/${userId}`),
+    queryKey: ["users", { userId }],
+  });
 
-  const [tasks, setTasks] = useState([]);
-  const [tasksLoader, setTasksLoader] = useState(true);
-
-  useEffect(() => {
-    getUsers(`/${userId}`)
-      .then((user) => {
-        if (user?.length > 0) setUser(user[0]);
-        setUserLoader(false);
-      })
-      .catch((error) => {
-        setError("Client Error : user fetch failure");
-        setUserLoader(false);
-      });
-  }, []);
-
-  useEffect(() => {
-    getTasks(`/users/${userId}`)
-      .then((tasks) => {
-        setTasks(tasks);
-        setTasksLoader(false);
-      })
-      .catch((error) => {
-        setError("Client Error : user's task fetch failure");
-        setTasksLoader(false);
-      });
-  }, []);
+  const {
+    data: tasksData,
+    isLoading: tasksLoader,
+    isError: isTasksError,
+    error: tasksError,
+  } = useQuery({
+    queryFn: () => getTasks(`/users/${userId}`),
+    queryKey: ["tasks", "tasks-user", { userId }],
+  });
 
   if (userLoader) {
     return <div>Loading user data...</div>;
   }
-  if (!userLoader && error) {
-    return <div>{error}</div>;
+  if (!userLoader && isUserError) {
+    return <div>{userError}</div>;
   }
-  if (!userLoader && !error && !user) {
+  if (!userLoader && !isUserError && userData.length === 0) {
     return <div>user does not found</div>;
   }
   if (tasksLoader) {
     return <div>Loading user's task data...</div>;
   }
-  if (!tasksLoader && error) {
-    return <div>{error}</div>;
+  if (!tasksLoader && isTasksError) {
+    return <div>{tasksError.message}</div>;
   }
 
+  var user = userData?.at(0);
+
   var taskContent =
-    tasks.length > 0 ? (
-      tasks?.map((task) => {
+    tasksData.length > 0 ? (
+      tasksData?.map((task) => {
         return (
           <Card
             key={task.id}

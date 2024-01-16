@@ -1,35 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./TasksPage.css";
 import Card from "../../components/Card/Card";
 import CardContainer from "../../components/CardContainer/CardContainer";
 import { getTasks } from "../../apis/tasks";
+import { useQuery } from "@tanstack/react-query";
 
 const TasksPage = () => {
-  const [tasks, setTasks] = useState([]);
-  const [loader, setLoader] = useState(true);
-  const [error, setError] = useState(undefined);
+  const {
+    data: tasks,
+    isPending,
+    isError,
+    error,
+  } = useQuery({
+    queryFn: () => getTasks("/"),
+    queryKey: ["tasks"],
+  });
 
-  useEffect(() => {
-    getTasks("/")
-      .then((tasks) => {
-        setTasks(tasks);
-        setLoader(false);
-      })
-      .catch((error) => {
-        setError("Client Error : tasks fetch failure");
-        setLoader(false);
-      });
-  }, []);
-
-  if (loader) {
+  if (isPending) {
     return <div>Loading tasks data...</div>;
   }
-  if (!loader && error) {
+  if (!isPending && isError) {
     return <div>{error}</div>;
   }
-  if (!loader && !error && tasks.length === 0) {
+  if (!isPending && !isError && tasks.length === 0) {
     return <div>tasks are not found</div>;
   }
+
   var taskContent =
     tasks.length > 0 ? (
       tasks?.map((task) => {

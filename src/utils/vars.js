@@ -1,6 +1,7 @@
 import Pending from "../components/icons/Pending";
 import Completed from "../components/icons/Completed";
 import InProgress from "../components/icons/InProgress";
+import { QueryClient } from "@tanstack/react-query";
 
 var forPeding = { name: "pending", color: "#3742fa", icon: <Pending /> };
 var forInProgress = {
@@ -14,5 +15,12 @@ var forCompleted = {
   icon: <Completed />,
 };
 var active_background = "#f5f6fa";
+const queryClient = new QueryClient();
 
-export { forCompleted, forInProgress, forPeding, active_background };
+export {
+  forCompleted,
+  forInProgress,
+  forPeding,
+  active_background,
+  queryClient,
+};
