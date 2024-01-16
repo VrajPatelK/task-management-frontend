@@ -5,13 +5,6 @@
     width: 28rem;
 }
 
-.edit-task-modal .modal-header {
-    /* border: 2px solid red; */
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #142650;
-}
-
 .edit-task-modal .modal-header svg {
     width: 1.2rem;
 }
@@ -71,26 +64,54 @@
 
 .edit-task-modal input,
 .edit-task-modal textarea,
-.edit-task-modal .created_by,
+.edit-task-modal .not-editable-div,
 .edit-task-modal select {
     padding: .8rem;
     outline: none;
     /* border: 1px solid blue; */
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     border: none;
     width: 100%;
     border-radius: .5rem;
     font-size: 1.1rem;
     font-weight: 500;
     color: #142650;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
-.edit-task-modal .created_by {
+.edit-task-modal .deadline-div {
+    font-size: 1.1rem;
+    padding-inline: .8rem;
+    font-weight: 500;
+    border-radius: .5rem;
+    color: #142650;
+    /* border: 2px solid red; */
+    display: flex;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.edit-task-modal .deadline-div p {
+    width: 30%;
+}
+
+.edit-task-modal .deadline-div input {
+    box-shadow: none;
+    /* border: 1px solid #4834d4; */
+}
+
+.edit-task-modal .modal-header {
+    /* border: 2px solid red; */
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #142650;
+}
+
+.edit-task-modal .not-editable-div {
     background: rgb(239, 238, 238);
     box-shadow: none;
     display: flex;
     column-gap: .8rem;
-
+    font-size: 1rem;
 }
 
 .edit-task-modal .not-editable {

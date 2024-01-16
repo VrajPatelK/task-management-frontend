@@ -33,7 +33,11 @@ const CardHeader = ({ taskId, title, assigned_to, displayEditDelete }) => {
 
   return (
     <>
-      <EditTaskModal isOpen={isModalOpen} onClose={closeModal} />
+      <EditTaskModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        taskId={taskId}
+      />
       <div className="card-header">
         <div className="title">{title}</div>
         {displayEditDelete && (
