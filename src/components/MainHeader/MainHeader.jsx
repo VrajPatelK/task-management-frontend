@@ -9,7 +9,7 @@ import DownArrow from "../icons/DownArrow";
 import UpArrow from "../icons/UpArrow";
 import SearchBar from "../SearchBar/SearchBar";
 
-const MainHeader = () => {
+const MainHeader = ({ displaySerachbar = false, displayFilters = false }) => {
   return (
     <>
       <div className="row-1">
@@ -17,64 +17,68 @@ const MainHeader = () => {
         <div className="page-title">page-title</div>
 
         {/* searchbar */}
-        <div className="serach-bar">
-          <SearchBar placeholder={"search here..."} />
-        </div>
+        {displaySerachbar && (
+          <div className="serach-bar">
+            <SearchBar placeholder={"search here..."} />
+          </div>
+        )}
       </div>
 
       {/* filters */}
-      <div className="filters">
-        <div className="dropdown-div">
-          <OptionsLayout
-            title={"status"}
-            title_style={{
-              fontSize: "1.1rem",
-              background: "rgb(149 175 192 / 15%)",
-              padding: ".3rem",
-              paddingInline: "1rem",
-              borderRadius: ".2rem",
-              marginBottom: ".1rem",
-              color: "#4834d4",
-            }}
-          >
-            <OptionBtn style={{ color: "#3742fa" }} onAction={() => {}}>
-              pending
-              <Pending />
-            </OptionBtn>
-            <OptionBtn style={{ color: "#ffa502" }} onAction={() => {}}>
-              in progress
-              <InProgress />
-            </OptionBtn>
-            <OptionBtn style={{ color: "#2ed573" }} onAction={() => {}}>
-              completed
-              <Completed />
-            </OptionBtn>
-          </OptionsLayout>
+      {displayFilters && (
+        <div className="filters">
+          <div className="dropdown-div">
+            <OptionsLayout
+              title={"status"}
+              title_style={{
+                fontSize: "1.1rem",
+                background: "rgb(149 175 192 / 15%)",
+                padding: ".3rem",
+                paddingInline: "1rem",
+                borderRadius: ".2rem",
+                marginBottom: ".1rem",
+                color: "#4834d4",
+              }}
+            >
+              <OptionBtn style={{ color: "#3742fa" }} onAction={() => {}}>
+                pending
+                <Pending />
+              </OptionBtn>
+              <OptionBtn style={{ color: "#ffa502" }} onAction={() => {}}>
+                in progress
+                <InProgress />
+              </OptionBtn>
+              <OptionBtn style={{ color: "#2ed573" }} onAction={() => {}}>
+                completed
+                <Completed />
+              </OptionBtn>
+            </OptionsLayout>
+          </div>
+          <div className="dropdown-div">
+            <OptionsLayout
+              title={"deadline"}
+              title_style={{
+                fontSize: "1.1rem",
+                background: "rgb(149 175 192 / 15%)",
+                padding: ".3rem",
+                paddingInline: "1rem",
+                borderRadius: ".2rem",
+                marginBottom: ".1rem",
+                color: "#4834d4",
+              }}
+            >
+              <OptionBtn onAction={() => {}}>
+                ascending
+                <UpArrow />
+              </OptionBtn>
+              <OptionBtn onAction={() => {}}>
+                descending
+                <DownArrow />
+              </OptionBtn>
+            </OptionsLayout>
+          </div>
         </div>
-        <div className="dropdown-div">
-          <OptionsLayout
-            title={"deadline"}
-            title_style={{
-              fontSize: "1.1rem",
-              background: "rgb(149 175 192 / 15%)",
-              padding: ".3rem",
-              paddingInline: "1rem",
-              borderRadius: ".2rem",
-              marginBottom: ".1rem",
-              color: "#4834d4",
-            }}
-          >
-            <OptionBtn onAction={() => {}}>
-              ascending
-              <UpArrow />
-            </OptionBtn>
-            <OptionBtn onAction={() => {}}>
-              descending
-              <DownArrow />
-            </OptionBtn>
-          </OptionsLayout>
-        </div>
-      </div>
+      )}
     </>
   );
 };

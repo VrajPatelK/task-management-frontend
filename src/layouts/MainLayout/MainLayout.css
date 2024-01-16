@@ -20,7 +20,7 @@
 
 
 .main-layout .main-header,
-.main-layout .body,
+.main-layout .content,
 .main-layout .footer {
     /* start/end */
     grid-column: 2/4;
@@ -38,8 +38,11 @@
     row-gap: 1rem;
 }
 
-.main-layout .body {
-    /* background: lightblue; */
+/* .main-layout .content {
+    border: 2px solid red;
+} */
+
+.main-layout .content .body {
     padding: 2rem;
 }
 

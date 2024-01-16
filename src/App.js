@@ -1,9 +1,11 @@
 import "./App.css";
 import MainLayout from "./layouts/MainLayout/MainLayout";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Route, RouterProvider, createBrowserRouter } from "react-router-dom";
 import TasksPage from "./pages/TasksPage/TasksPage";
 import UsersPage from "./pages/UsersPage/UsersPage";
 import UserPage from "./pages/UserPage/UserPage";
+import TasksPageLayout from "./layouts/TasksPageLayout/TasksPageLayout";
+import UsersPageLayout from "./layouts/UsersPageLayout/UsersPageLayout";
 
 //
 const router = createBrowserRouter([
@@ -13,15 +15,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/tasks",
-        element: <TasksPage />,
+        element: <TasksPageLayout />,
+        children: [
+          {
+            path: "",
+            element: <TasksPage />,
+          },
+        ],
       },
       {
         path: "/users",
-        element: <UsersPage />,
-      },
-      {
-        path: "/users/:userId",
-        element: <UserPage />,
+        element: <UsersPageLayout />,
+        children: [
+          {
+            path: "",
+            element: <UsersPage />,
+          },
+          {
+            path: "/users/:userId",
+            element: <UserPage />,
+          },
+        ],
       },
     ],
   },

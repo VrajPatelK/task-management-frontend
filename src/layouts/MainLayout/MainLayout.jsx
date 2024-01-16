@@ -13,10 +13,7 @@ const MainLayout = () => {
         <div className="navbar-sidebar">
           <Navbar />
         </div>
-        <div className="main-header">
-          <MainHeader />
-        </div>
-        <div className="body">
+        <div className="content">
           <Outlet />
         </div>
         <div className="footer">footer</div>
