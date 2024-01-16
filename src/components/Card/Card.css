@@ -10,9 +10,11 @@
     font-size: 1.2rem;
 }
 
-/* .card-header .button-grp {
-    border: 2px solid salmon;
-} */
+.card-header .button-grp {
+    /* border: 2px solid salmon; */
+    min-width: .3rem;
+    min-height: .4rem;
+}
 
 /* .card-body {
     border: 2px solid green;

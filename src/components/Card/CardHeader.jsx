@@ -4,8 +4,16 @@ import OptionsLayout from "../../layouts/OptionsLayout/OptionsLayout";
 import Edit from "../icons/Edit";
 import Delete from "../icons/Delete";
 import OptionBtn from "../Options/OptionBtn";
+import { deleteTask } from "../../apis/tasks";
+import toast from "react-hot-toast";
 
-const CardHeader = ({ title, assigned_to, displayEditDelete }) => {
+const CardHeader = ({ taskId, title, assigned_to, displayEditDelete }) => {
+  // handlers
+  async function taskDeleteHandler() {
+    await deleteTask(`/${taskId}`);
+    toast.success("task deleted!");
+  }
+
   return (
     <div className="card-header">
       <div className="title">{title}</div>
@@ -23,9 +31,7 @@ const CardHeader = ({ title, assigned_to, displayEditDelete }) => {
             </OptionBtn>
             <OptionBtn
               style={{ color: "#ff4757" }}
-              onAction={() => {
-                console.log(`delete : ${assigned_to}`);
-              }}
+              onAction={taskDeleteHandler}
             >
               Delete
               <Delete />

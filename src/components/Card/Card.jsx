@@ -21,6 +21,7 @@ const Card = ({
   return (
     <CardLayout>
       <CardHeader
+        taskId={taskId}
         title={title}
         assigned_to={assigned_to}
         displayEditDelete={displayEditDelete}
