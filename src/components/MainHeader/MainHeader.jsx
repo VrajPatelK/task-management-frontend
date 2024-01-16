@@ -12,10 +12,17 @@ import SearchBar from "../SearchBar/SearchBar";
 const MainHeader = () => {
   return (
     <>
-      <div className="page-title">page-title</div>
-      <div className="serach-bar">
-        <SearchBar placeholder={"search here..."} />
+      <div className="row-1">
+        {/* page-title */}
+        <div className="page-title">page-title</div>
+
+        {/* searchbar */}
+        <div className="serach-bar">
+          <SearchBar placeholder={"search here..."} />
+        </div>
       </div>
+
+      {/* filters */}
       <div className="filters">
         <div className="dropdown-div">
           <OptionsLayout

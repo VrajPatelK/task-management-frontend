@@ -30,11 +30,12 @@
     /* border: 2px solid red; */
     background: #fff;
     padding: 2rem;
-    padding-bottom: 0rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    row-gap: 1.5rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* grid-template-rows: repeat(2, 1fr); */
+    row-gap: 1rem;
 }
 
 .main-layout .body {
