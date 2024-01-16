@@ -1,0 +1,114 @@
+.edit-task-modal {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    width: 28rem;
+}
+
+.edit-task-modal .modal-header {
+    /* border: 2px solid red; */
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #142650;
+}
+
+.edit-task-modal .modal-header svg {
+    width: 1.2rem;
+}
+
+/* .edit-task-modal .modal-body {
+    border: 2px solid red;
+} */
+
+.edit-task-modal .modal-footer {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    column-gap: .8rem;
+}
+
+.edit-task-modal .modal-footer svg {
+    width: 1rem;
+}
+
+.edit-task-modal .modal-footer button {
+    border: none;
+    outline: none;
+    padding: .8rem;
+    font-size: 1rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: .5rem;
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.edit-task-modal .modal-footer button:hover {
+    box-shadow: none;
+}
+
+.edit-task-modal .modal-footer .cancel-btn {
+    background: #f7f7ff;
+    color: #4834d4;
+}
+
+.edit-task-modal .modal-footer .edit-btn {
+    background: #4834d4;
+    color: #fff;
+}
+
+.edit-task-modal form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: .6rem;
+}
+
+.edit-task-modal form>div {
+    display: flex;
+}
+
+.edit-task-modal input,
+.edit-task-modal textarea,
+.edit-task-modal .created_by,
+.edit-task-modal select {
+    padding: .8rem;
+    outline: none;
+    /* border: 1px solid blue; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border: none;
+    width: 100%;
+    border-radius: .5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #142650;
+}
+
+.edit-task-modal .created_by {
+    background: rgb(239, 238, 238);
+    box-shadow: none;
+    display: flex;
+    column-gap: .8rem;
+
+}
+
+.edit-task-modal .not-editable {
+    color: #ff7979;
+    background: #142650;
+    border-radius: .5rem;
+    padding: .1rem;
+    padding-inline: .5rem;
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin-left: auto;
+}
+
+.edit-task-modal select {
+    width: fit-content;
+    /* background: rgb(239, 238, 238); */
+    /* border: 2px solid red; */
+}

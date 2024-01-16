@@ -23,7 +23,11 @@ const OptionsLayout = ({
         {title}
         {droparrow && <DropArrow />}
       </div>
-      {display && <div className="option-layout">{children}</div>}
+      {display && (
+        <div className="option-layout" onClick={() => setDisplay(false)}>
+          {children}
+        </div>
+      )}
     </div>
   );
 };

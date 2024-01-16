@@ -23,7 +23,6 @@ const MainHeader = ({ displaySerachbar = false, displayFilters = false }) => {
           </div>
         )}
       </div>
-
       {/* filters */}
       {displayFilters && (
         <div className="filters">
