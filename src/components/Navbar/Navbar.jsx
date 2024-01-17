@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../Logo/Logo";
 import "./Navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { checkSession } from "../../utils/utils";
+import { checkSession, getLoggedInUser } from "../../utils/utils";
 import ProfileImg from "../ProfileImg/ProfileImg";
 
 import Logout from "../icons/Logout";
@@ -12,6 +12,11 @@ import Tasks from "../icons/Tasks";
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const loggedInUser = getLoggedInUser();
+  const color =
+    loggedInUser?.user_type === "admin"
+      ? "rgb(252, 48, 48)"
+      : "rgb(103 255 106)";
 
   const isActive = (to) => location.pathname.includes(to);
 
@@ -51,7 +56,7 @@ const Navbar = () => {
           <div
             className="menu logout-btn"
             onClick={() => {
-              localStorage.removeItem("access_token");
+              localStorage.removeItem("user");
               navigate("/auth");
             }}
           >
@@ -61,23 +66,24 @@ const Navbar = () => {
         )}
         {checkSession() && (
           <div className="navbar-footer">
-            <div
-              className=" profile-div"
-              onClick={() => {
-                localStorage.removeItem("access_token");
-                navigate("/auth");
-              }}
-            >
+            <div className=" profile-div">
               <div className="user-info">
-                <div className="username">usernamw</div>
-                <div className="role">admin</div>
+                <div className="username">
+                  <span style={{ color: "gray", marginRight: ".1rem" }}>@</span>
+                  {loggedInUser?.username}
+                </div>
+                <div
+                  className="role"
+                  style={{ color, border: `2px solid ${color}` }}
+                >
+                  {loggedInUser?.user_type}
+                </div>
               </div>
-              <div className="img-div">
-                <ProfileImg
-                  src={
-                    "https://firebasestorage.googleapis.com/v0/b/task-management-fbb64.appspot.com/o/profile_images%2Fdefault-profile-img.png?alt=media&token=dbab22ee-13fe-4b80-b7a5-7209944a775a"
-                  }
-                />
+              <div
+                className="img-div"
+                onClick={() => navigate(`/users/${loggedInUser?.id}`)}
+              >
+                <ProfileImg src={loggedInUser?.profile_img} />
               </div>
             </div>
           </div>

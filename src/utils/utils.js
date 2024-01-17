@@ -1,7 +1,10 @@
 import { redirect } from "react-router-dom";
 
+function getLoggedInUser() {
+  return JSON.parse(localStorage.getItem("user"));
+}
 function getToken() {
-  return localStorage.getItem("access_token");
+  return JSON.parse(localStorage.getItem("user"))?.token;
 }
 
 function isLoggedIn() {
@@ -15,4 +18,4 @@ function checkSession() {
   return getToken() ? true : false;
 }
 
-export { getToken, isLoggedIn, checkSession };
+export { getToken, isLoggedIn, checkSession, getLoggedInUser };

@@ -18,6 +18,7 @@
     color: #fff;
     padding: .5rem;
     padding-right: 1rem;
+    margin-right: .3rem;
     text-decoration: none;
     border-left: 3px solid #031926;
     cursor: pointer;
@@ -36,10 +37,8 @@
 
 .navbar-footer {
     margin-top: auto;
-    margin-bottom: .5rem;
     display: flex;
     flex-direction: column;
-    row-gap: 0rem;
 }
 
 .navbar-footer .profile-div {
@@ -48,6 +47,9 @@
     justify-content: space-between;
     align-items: center;
     padding: .3rem;
+    padding-block: 1rem;
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem;
     background: #052d44;
     border-left: 3px solid #052d44 !important;
 
@@ -58,12 +60,12 @@
     width: 70%;
 }
 
-.navbar-footer .profile-div .user-info>* {}
-
 .navbar-footer .username {
     font-size: 1.1rem;
     text-transform: capitalize;
     font-weight: 600;
+    font-style: italic;
+    color: #fff;
 }
 
 .navbar-footer .role {
@@ -73,17 +75,16 @@
     margin-top: .5rem;
     padding-inline: 1rem;
     font-size: .9rem;
-    color: rgb(252, 48, 48);
-    border: 1px solid rgb(255, 114, 75);
     background: #031926;
 }
 
 
 .navbar-footer .img-div {
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     border-radius: 5%;
     padding: 0rem;
     width: 15%;
+    cursor: pointer;
 }
 
 .logout-btn {
@@ -98,4 +99,6 @@
 .active-menu {
     background: #142650;
     border-left: 3px solid blue !important;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
