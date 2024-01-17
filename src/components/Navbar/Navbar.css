@@ -2,21 +2,98 @@
     /* border: 2px solid blue; */
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .manubar-layout {
     /* border: 2px solid greenyellow; */
     margin-top: .7rem;
-    display: grid;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .manubar-layout .menu {
     /* border: 2px solid #fff; */
     color: #fff;
     padding: .5rem;
+    padding-right: 1rem;
     text-decoration: none;
     border-left: 3px solid #031926;
+    cursor: pointer;
+    height: fit-content;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.manubar-layout .menu svg {
+    width: 1.1rem;
+}
+
+.navbar-footer {
+    margin-top: auto;
+    margin-bottom: .5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0rem;
+}
+
+.navbar-footer .profile-div {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .3rem;
+    background: #052d44;
+    border-left: 3px solid #052d44 !important;
+
+}
+
+.navbar-footer .profile-div .user-info {
+    /* border: 2px solid salmon; */
+    width: 70%;
+}
+
+.navbar-footer .profile-div .user-info>* {}
+
+.navbar-footer .username {
+    font-size: 1.1rem;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.navbar-footer .role {
+    width: fit-content;
+    padding: .2rem;
+    border-radius: .3rem;
+    margin-top: .5rem;
+    padding-inline: 1rem;
+    font-size: .9rem;
+    color: rgb(252, 48, 48);
+    border: 1px solid rgb(255, 114, 75);
+    background: #031926;
+}
+
+
+.navbar-footer .img-div {
+    border: 2px solid blue;
+    border-radius: 5%;
+    padding: 0rem;
+    width: 15%;
+}
+
+.logout-btn {
+
+    padding: 1.2rem;
+    /* border-bottom: 3px solid blue !important; */
+
+    /* border: 1px solid blue !important; */
+}
+
 
 .active-menu {
     background: #142650;
