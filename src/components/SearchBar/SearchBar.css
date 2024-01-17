@@ -18,6 +18,10 @@
     border-radius: .3rem;
     outline: none;
     border: none;
+    text-transform: lowercase;
+}
+
+.search-input::placeholder {
     text-transform: capitalize;
 }
 
