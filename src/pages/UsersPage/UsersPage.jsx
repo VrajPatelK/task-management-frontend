@@ -1,21 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import "./UsersPage.css";
 import UserCard from "../../components/UserCard/UserCard";
 import UserCardContainer from "../../components/UserCardContainer/UserCardContainer";
 import { getUsers } from "../../apis/users";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import MainHeader from "../../components/MainHeader/MainHeader";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const UsersPage = () => {
+  var initialQuery = "/user_type/developer";
+  const [query, setQuery] = useState(initialQuery);
+
   const {
     data: usersData,
     isLoading: usersLoader,
-    isError: isUsersError,
-    error: usersError,
+    isUsersError: isUsersError,
+    usersError: usersError,
   } = useQuery({
-    queryFn: () => getUsers(`/user_type/developer`),
-    queryKey: ["users"],
+    queryFn: () => getUsers(query),
+    queryKey: ["users", { query }],
   });
+
+  var usersContent = <></>;
+
+  if (usersLoader) {
+    usersContent = <div>Loading users data...</div>;
+  } else if (!usersLoader && isUsersError) {
+    usersContent = <div>{usersError}</div>;
+  } else if (!usersLoader && !isUsersError && usersData.length === 0) {
+    usersContent = <div>usersData are not found</div>;
+  } else {
+    usersContent =
+      usersData.length > 0 ? (
+        usersData.map((user) => {
+          return (
+            <Link to={`/users/${user.id}`} key={user.id}>
+              <UserCard
+                email={user.email}
+                username={user.username}
+                src={user.profile_img}
+                user_type={user.user_type}
+              />
+            </Link>
+          );
+        })
+      ) : (
+        <div>any single user doesn't create</div>
+      );
+  }
 
   if (usersLoader) {
     return <div>Loading user data...</div>;
@@ -27,21 +60,35 @@ const UsersPage = () => {
     return <div>user does not found</div>;
   }
 
+  //
+  function searchHandler(searchquery = "") {
+    if (searchquery.length === 0 || !searchquery) {
+      setQuery(initialQuery);
+    } else {
+      setQuery(`/search/${searchquery}`);
+    }
+  }
+
   return (
-    <UserCardContainer>
-      {usersData.map((user) => {
-        return (
-          <Link to={`/users/${user.id}`} key={user.id}>
-            <UserCard
-              email={user.email}
-              username={user.username}
-              src={user.profile_img}
-              user_type={user.user_type}
-            />
-          </Link>
-        );
-      })}
-    </UserCardContainer>
+    <>
+      <div className="main-header">
+        <MainHeader
+          title="Users"
+          displaySerachbar={true}
+          searchBar={
+            <div className="serach-bar">
+              <SearchBar
+                placeholder={"username / email..."}
+                onSearch={searchHandler}
+              />
+            </div>
+          }
+        />
+      </div>
+      <div className="body">
+        <UserCardContainer>{usersContent}</UserCardContainer>
+      </div>
+    </>
   );
 };
 

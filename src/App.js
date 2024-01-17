@@ -4,7 +4,6 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import TasksPage from "./pages/TasksPage/TasksPage";
 import UsersPage from "./pages/UsersPage/UsersPage";
 import UserPage from "./pages/UserPage/UserPage";
-import UsersPageLayout from "./layouts/UsersPageLayout/UsersPageLayout";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./utils/vars";
 
@@ -20,17 +19,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/users",
-        element: <UsersPageLayout />,
-        children: [
-          {
-            path: "",
-            element: <UsersPage />,
-          },
-          {
-            path: "/users/:userId",
-            element: <UserPage />,
-          },
-        ],
+        element: <UsersPage />,
+      },
+      {
+        path: "/users/:userId",
+        element: <UserPage />,
       },
     ],
   },
