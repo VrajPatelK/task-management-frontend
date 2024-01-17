@@ -43,6 +43,7 @@
 } */
 
 .main-layout .content .body {
+    /* border: 2px solid red; */
     padding: 2rem;
 }
 

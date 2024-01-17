@@ -1,7 +1,6 @@
 import React from "react";
 import "./MainLayout.css";
 import Navbar from "../../components/Navbar/Navbar";
-import MainHeader from "../../components/MainHeader/MainHeader";
 import { Outlet } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
