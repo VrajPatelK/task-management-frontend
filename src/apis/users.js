@@ -13,6 +13,22 @@ async function getUsers(apiEndPoint) {
   return responseData;
 }
 
+async function createUser({ body }) {
+  const response = await fetch(
+    `${process.env.REACT_APP_SERVER_DOMAIN}/api/v1/users/create`,
+    {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+        token: getToken(),
+      },
+    }
+  );
+  const responseData = await response.json();
+  return responseData;
+}
+
 async function userLogin(body) {
   const response = await fetch(
     `${process.env.REACT_APP_SERVER_DOMAIN}/api/v1/users/login`,
@@ -29,4 +45,4 @@ async function userLogin(body) {
   return responseData;
 }
 
-export { getUsers, userLogin };
+export { getUsers, userLogin, createUser };

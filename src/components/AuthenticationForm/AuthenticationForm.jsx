@@ -29,7 +29,7 @@ const AuthenticationForm = () => {
     <div className="auth-form">
       <div className="auth-form-header">Login</div>
       <div className="auth-form-body">
-        <form ref={formRef} onSubmit={submitHandler}>
+        <form ref={formRef} onSubmit={submitHandler} method="POST">
           <div>
             <input type="email" name="email" placeholder="abc@gmail.com" />
           </div>

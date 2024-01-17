@@ -1,10 +1,11 @@
 import React from "react";
 import "./MainHeader.css";
-import SearchBar from "../SearchBar/SearchBar";
 
 const MainHeader = ({
   title = "",
-  displaySerachbar = false,
+  displayCreateBtn = false,
+  onMoment = () => {},
+  btnTxt = "",
   filters = <></>,
   searchBar = <></>,
 }) => {
@@ -12,7 +13,14 @@ const MainHeader = ({
     <>
       <div className="row-1">
         {/* page-title */}
-        <div className="page-title">{title}</div>
+        <div className="title-div">
+          <div className="page-title">{title}</div>
+          {displayCreateBtn && (
+            <button type="button" onClick={() => onMoment()}>
+              {btnTxt}
+            </button>
+          )}
+        </div>
 
         {/* searchbar */}
         {searchBar}

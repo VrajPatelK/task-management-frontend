@@ -7,10 +7,16 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import MainHeader from "../../components/MainHeader/MainHeader";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import CreateUser from "../../components/icons/CreateUser";
+import CreateUserModal from "../../components/Modals/CreateUserModal/CreateUserModal";
 
 const UsersPage = () => {
   var initialQuery = "/user_type/developer";
   const [query, setQuery] = useState(initialQuery);
+  // modal states
+  const [isModalOpen, setModalOpen] = useState(false);
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   const {
     data: usersData,
@@ -71,9 +77,20 @@ const UsersPage = () => {
 
   return (
     <>
+      <CreateUserModal isOpen={isModalOpen} onClose={closeModal} />
       <div className="main-header">
         <MainHeader
           title="Users"
+          displayCreateBtn={true}
+          btnTxt={
+            <>
+              <CreateUser /> create
+            </>
+          }
+          onMoment={() => {
+            openModal();
+            console.log("on moment at users page:)");
+          }}
           displaySerachbar={true}
           searchBar={
             <div className="serach-bar">

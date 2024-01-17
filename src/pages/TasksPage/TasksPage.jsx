@@ -13,6 +13,8 @@ import InProgress from "../../components/icons/InProgress";
 import Completed from "../../components/icons/Completed";
 import { active_background } from "../../utils/vars";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import CreateTask from "../../components/icons/CreateTask";
+import CreateTaskModal from "../../components/Modals/CreateTaskModal/CreateTaskModal";
 // import DownArrow from "../../components/icons/DropArrow";
 // import UpArrow from "../../components/icons/UpArrow";
 
@@ -20,6 +22,11 @@ const TasksPage = () => {
   var initialQuery = "/";
   const [query, setQuery] = useState(initialQuery);
   const [status, setStatus] = useState(undefined);
+  // modal states
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   const {
     data: tasks,
@@ -86,10 +93,20 @@ const TasksPage = () => {
 
   return (
     <>
+      <CreateTaskModal isOpen={isModalOpen} onClose={closeModal} />
       <div className="main-header">
         <MainHeader
           title="Tasks"
-          displaySerachbar={true}
+          displayCreateBtn={true}
+          btnTxt={
+            <>
+              <CreateTask /> create
+            </>
+          }
+          onMoment={() => {
+            openModal();
+            // console.log("on moment at tasks page:)");
+          }}
           searchBar={
             <div className="serach-bar">
               <SearchBar
