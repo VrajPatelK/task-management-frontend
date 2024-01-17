@@ -3,17 +3,22 @@
     justify-content: space-between;
     align-items: center;
     column-gap: .5rem;
+    /* border: 2px solid red; */
+    background: #F4F6FA;
+    padding: .3rem;
+    border-radius: .3rem;
 }
 
 .search-input {
+    background: #F4F6FA;
     font-size: 1rem;
     display: block;
-    padding: .7rem;
+    padding: .5rem;
     width: 100%;
     border-radius: .3rem;
     outline: none;
     border: none;
-    background: #F4F6FA;
+    text-transform: capitalize;
 }
 
 .search-btn {

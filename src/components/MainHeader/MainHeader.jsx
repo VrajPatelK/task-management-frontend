@@ -6,6 +6,7 @@ const MainHeader = ({
   title = "",
   displaySerachbar = false,
   filters = <></>,
+  searchBar = <></>,
 }) => {
   return (
     <>
@@ -14,11 +15,7 @@ const MainHeader = ({
         <div className="page-title">{title}</div>
 
         {/* searchbar */}
-        {displaySerachbar && (
-          <div className="serach-bar">
-            <SearchBar placeholder={"search here..."} />
-          </div>
-        )}
+        {searchBar}
       </div>
       {/* filters */}
       {filters}

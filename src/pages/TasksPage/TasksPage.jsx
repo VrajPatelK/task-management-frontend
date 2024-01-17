@@ -12,6 +12,7 @@ import Pending from "../../components/icons/Pending";
 import InProgress from "../../components/icons/InProgress";
 import Completed from "../../components/icons/Completed";
 import { active_background } from "../../utils/vars";
+import SearchBar from "../../components/SearchBar/SearchBar";
 // import DownArrow from "../../components/icons/DropArrow";
 // import UpArrow from "../../components/icons/UpArrow";
 
@@ -30,36 +31,36 @@ const TasksPage = () => {
     queryKey: ["tasks", { query }],
   });
 
-  if (isPending) {
-    return <div>Loading tasks data...</div>;
-  }
-  if (!isPending && isError) {
-    return <div>{error}</div>;
-  }
-  if (!isPending && !isError && tasks.length === 0) {
-    return <div>tasks are not found</div>;
-  }
+  var taskContent = <></>;
 
-  var taskContent =
-    tasks.length > 0 ? (
-      tasks?.map((task) => {
-        return (
-          <Card
-            key={task.id}
-            taskId={task.id}
-            title={task.title}
-            description={task.description}
-            profile_img={task.profile_img}
-            status={task.status}
-            deadline={task.deadline}
-            assigned_to={task.assigned_to}
-            username={task.username}
-          />
-        );
-      })
-    ) : (
-      <div>any single task doesn't assign</div>
-    );
+  if (isPending) {
+    taskContent = <div>Loading tasks data...</div>;
+  } else if (!isPending && isError) {
+    taskContent = <div>{error}</div>;
+  } else if (!isPending && !isError && tasks.length === 0) {
+    taskContent = <div>tasks are not found</div>;
+  } else {
+    taskContent =
+      tasks.length > 0 ? (
+        tasks?.map((task) => {
+          return (
+            <Card
+              key={task.id}
+              taskId={task.id}
+              title={task.title}
+              description={task.description}
+              profile_img={task.profile_img}
+              status={task.status}
+              deadline={task.deadline}
+              assigned_to={task.assigned_to}
+              username={task.username}
+            />
+          );
+        })
+      ) : (
+        <div>any single task doesn't assign</div>
+      );
+  }
 
   //
   function filterHandler(filterStatus) {
@@ -72,12 +73,31 @@ const TasksPage = () => {
     setQuery(initialQuery);
     setStatus(undefined);
   }
+
+  //
+  function searchHandler(searchquery = "") {
+    filterCleanup();
+    if (searchquery.length === 0 || !searchquery) {
+      setQuery(initialQuery);
+    } else {
+      setQuery(`/search/${searchquery}`);
+    }
+  }
+
   return (
     <>
       <div className="main-header">
         <MainHeader
           title="Tasks"
           displaySerachbar={true}
+          searchBar={
+            <div className="serach-bar">
+              <SearchBar
+                placeholder={"title / description..."}
+                onSearch={searchHandler}
+              />
+            </div>
+          }
           filters={
             <div className="filters">
               <div className="dropdown-div">
