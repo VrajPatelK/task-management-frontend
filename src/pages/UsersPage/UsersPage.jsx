@@ -3,7 +3,6 @@ import "./UsersPage.css";
 import UserCard from "../../components/UserCard/UserCard";
 import UserCardContainer from "../../components/UserCardContainer/UserCardContainer";
 import { getUsers } from "../../apis/users";
-import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import MainHeader from "../../components/MainHeader/MainHeader";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -41,14 +40,14 @@ const UsersPage = () => {
       usersData.length > 0 ? (
         usersData.map((user) => {
           return (
-            <Link to={`/users/${user.id}`} key={user.id}>
-              <UserCard
-                email={user.email}
-                username={user.username}
-                src={user.profile_img}
-                user_type={user.user_type}
-              />
-            </Link>
+            <UserCard
+              key={user.id}
+              userId={user.id}
+              email={user.email}
+              username={user.username}
+              src={user.profile_img}
+              user_type={user.user_type}
+            />
           );
         })
       ) : (
