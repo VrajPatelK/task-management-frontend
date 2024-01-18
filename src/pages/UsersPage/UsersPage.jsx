@@ -13,9 +13,9 @@ const UsersPage = () => {
   var initialQuery = "/user_type/developer";
   const [query, setQuery] = useState(initialQuery);
   // modal states
-  const [isModalOpen, setModalOpen] = useState(false);
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
+  const [isCreateUserModalOpen, setCreateUserModalOpen] = useState(false);
+  const openCreateUserModal = () => setCreateUserModalOpen(true);
+  const closeCreateUserModal = () => setCreateUserModalOpen(false);
 
   const {
     data: usersData,
@@ -76,7 +76,10 @@ const UsersPage = () => {
 
   return (
     <>
-      <CreateUserModal isOpen={isModalOpen} onClose={closeModal} />
+      <CreateUserModal
+        isOpen={isCreateUserModalOpen}
+        onClose={closeCreateUserModal}
+      />
       <div className="main-header">
         <MainHeader
           title="Users"
@@ -87,7 +90,7 @@ const UsersPage = () => {
             </>
           }
           onMoment={() => {
-            openModal();
+            openCreateUserModal();
             console.log("on moment at users page:)");
           }}
           displaySerachbar={true}

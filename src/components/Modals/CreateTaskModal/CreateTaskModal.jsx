@@ -98,16 +98,20 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
               ></textarea>
             </div>
             <div className="dropdown-div">
-              <select name="assigned_to" defaultValue={"null"}>
-                <option defaultValue={"null"}>Assigned To</option>
-                {usersData?.map((user) => {
-                  return (
-                    <option value={user.id} key={user.id}>
-                      {user.id}
-                    </option>
-                  );
-                })}
-              </select>
+              {usersData?.length > 0 ? (
+                <select name="assigned_to" defaultValue={"null"}>
+                  <option defaultValue={"null"}>Assigned To</option>
+                  {usersData?.map((user) => {
+                    return (
+                      <option value={user.id} key={user.id}>
+                        {user.id}
+                      </option>
+                    );
+                  })}
+                </select>
+              ) : (
+                <>user data doesn't available</>
+              )}
               <select name="status" defaultValue={"null"}>
                 <option defaultValue={"null"}>Status</option>
                 <option value={"pending"}>pending</option>

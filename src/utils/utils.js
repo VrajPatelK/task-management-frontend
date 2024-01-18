@@ -7,15 +7,19 @@ function getToken() {
   return JSON.parse(localStorage.getItem("user"))?.token;
 }
 
-function isLoggedIn() {
-  const token = getToken();
-  if (!token) {
-    return redirect("/auth");
-  }
-  return true;
-}
 function checkSession() {
   return getToken() ? true : false;
 }
 
-export { getToken, isLoggedIn, checkSession, getLoggedInUser };
+function isAdmin() {
+  return JSON.parse(localStorage.getItem("user"))?.user_type === "admin";
+}
+
+function isAuthorized() {
+  if (!checkSession() || !isAdmin()) {
+    return redirect(`/users/${getLoggedInUser()?.id}`);
+  }
+  return true;
+}
+
+export { getToken, checkSession, getLoggedInUser, isAdmin, isAuthorized };

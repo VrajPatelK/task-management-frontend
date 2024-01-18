@@ -2,7 +2,12 @@ import React from "react";
 import Logo from "../Logo/Logo";
 import "./Navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { checkSession, getLoggedInUser } from "../../utils/utils";
+import {
+  checkSession,
+  getLoggedInUser,
+  isAdmin,
+  isAuthorized,
+} from "../../utils/utils";
 import ProfileImg from "../ProfileImg/ProfileImg";
 
 import Logout from "../icons/Logout";
@@ -26,7 +31,7 @@ const Navbar = () => {
         <Logo />
       </div>
       <div className="manubar-layout">
-        {checkSession() && (
+        {isAdmin() && (
           <Link
             className={`menu${isActive("/users") ? " active-menu" : ""}`}
             to={"/users"}
@@ -35,7 +40,7 @@ const Navbar = () => {
             <Users />
           </Link>
         )}
-        {checkSession() && (
+        {isAdmin() && (
           <Link
             className={`menu${isActive("/tasks") ? " active-menu" : ""}`}
             to={"/tasks"}

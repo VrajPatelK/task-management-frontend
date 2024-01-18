@@ -51,10 +51,10 @@ const EditTaskModal = ({ isOpen, onClose, taskId }) => {
     return <div>Loading tasks data...</div>;
   }
   if (!isTaskPending && isTaskError) {
-    return <div>{taskError}</div>;
+    return <div>{taskError.message}</div>;
   }
   if (!isTaskPending && !isTaskError && taskData?.length === 0) {
-    return <div>task doesn't not found</div>;
+    return <div></div>;
   }
 
   var task = taskData?.at(0);
@@ -123,19 +123,23 @@ const EditTaskModal = ({ isOpen, onClose, taskId }) => {
               ></textarea>
             </div>
             <div>
-              <select
-                name="assigned_to"
-                defaultValue={task?.assigned_to ? task?.assigned_to : "null"}
-              >
-                <option defaultValue={"null"}>Assigned To</option>
-                {usersData?.map((user) => {
-                  return (
-                    <option value={user.id} key={user.id}>
-                      {user.id}
-                    </option>
-                  );
-                })}
-              </select>
+              {usersData?.length > 0 ? (
+                <select
+                  name="assigned_to"
+                  defaultValue={task?.assigned_to ? task?.assigned_to : "null"}
+                >
+                  <option defaultValue={"null"}>Assigned To</option>
+                  {usersData?.map((user) => {
+                    return (
+                      <option value={user.id} key={user.id}>
+                        {user.id}
+                      </option>
+                    );
+                  })}
+                </select>
+              ) : (
+                <>user data doesn't available</>
+              )}
             </div>
             <div>
               <select

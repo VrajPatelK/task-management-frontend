@@ -22,11 +22,10 @@ const TasksPage = () => {
   var initialQuery = "/";
   const [query, setQuery] = useState(initialQuery);
   const [status, setStatus] = useState(undefined);
-  // modal states
-  const [isModalOpen, setModalOpen] = useState(false);
 
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
+  const [isCreateTaskModalOpen, setCreateTaskModalOpen] = useState(false);
+  const openCreateTaskModal = () => setCreateTaskModalOpen(true);
+  const closeCreateTaskModal = () => setCreateTaskModalOpen(false);
 
   const {
     data: tasks,
@@ -93,7 +92,10 @@ const TasksPage = () => {
 
   return (
     <>
-      <CreateTaskModal isOpen={isModalOpen} onClose={closeModal} />
+      <CreateTaskModal
+        isOpen={isCreateTaskModalOpen}
+        onClose={closeCreateTaskModal}
+      />
       <div className="main-header">
         <MainHeader
           title="Tasks"
@@ -104,7 +106,7 @@ const TasksPage = () => {
             </>
           }
           onMoment={() => {
-            openModal();
+            openCreateTaskModal();
             // console.log("on moment at tasks page:)");
           }}
           searchBar={

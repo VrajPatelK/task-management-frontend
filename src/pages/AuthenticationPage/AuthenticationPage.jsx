@@ -3,6 +3,7 @@ import "./AuthenticationPage.css";
 import AuthenticationForm from "../../components/AuthenticationForm/AuthenticationForm";
 import AuthenticationLayout from "../../layouts/AuthenticationLayout/AuthenticationLayout";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { getLoggedInUser } from "../../utils/utils";
 
 const AuthenticationPage = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const AuthenticationPage = () => {
   const alreadyLoggedIn = useLoaderData();
   useEffect(() => {
     if (alreadyLoggedIn) {
-      navigate("/users");
+      navigate(`/users/${getLoggedInUser()?.id}`);
     }
   }, []);
 
