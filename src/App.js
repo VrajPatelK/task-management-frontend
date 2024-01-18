@@ -1,6 +1,10 @@
 import "./App.css";
 import MainLayout from "./layouts/MainLayout/MainLayout";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 import TasksPage from "./pages/TasksPage/TasksPage";
 import UsersPage from "./pages/UsersPage/UsersPage";
 import UserPage from "./pages/UserPage/UserPage";
@@ -17,6 +21,10 @@ function App() {
       path: "/",
       element: <MainLayout />,
       children: [
+        {
+          path: "/",
+          element: <Navigate to={"/auth"} />,
+        },
         {
           path: "/auth",
           element: <AuthenticationPage />,

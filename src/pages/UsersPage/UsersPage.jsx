@@ -89,10 +89,7 @@ const UsersPage = () => {
               <CreateUser /> create
             </>
           }
-          onMoment={() => {
-            openCreateUserModal();
-            console.log("on moment at users page:)");
-          }}
+          onMoment={() => openCreateUserModal()}
           displaySerachbar={true}
           searchBar={
             <div className="serach-bar">

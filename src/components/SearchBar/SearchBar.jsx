@@ -10,7 +10,7 @@ const SearchBar = ({ placeholder = "", onSearch = () => {} }) => {
 
   //
   return (
-    <form className="search-form">
+    <div className="search-bar">
       {/* <Toaster /> */}
       <div className="search-div">
         <input
@@ -30,7 +30,7 @@ const SearchBar = ({ placeholder = "", onSearch = () => {} }) => {
           search
         </button>
       </div>
-    </form>
+    </div>
   );
 };
 
