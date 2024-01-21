@@ -2,12 +2,7 @@ import React from "react";
 import Logo from "../Logo/Logo";
 import "./Navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  checkSession,
-  getLoggedInUser,
-  isAdmin,
-  isAuthorized,
-} from "../../utils/utils";
+import { checkSession, getLoggedInUser, isAdmin } from "../../utils/utils";
 import ProfileImg from "../ProfileImg/ProfileImg";
 
 import Logout from "../icons/Logout";
