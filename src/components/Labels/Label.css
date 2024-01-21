@@ -1,0 +1,12 @@
+.label {
+    /* border: 2px solid red; */
+    background: rgba(30, 0, 255, 0.696);
+    color: #fff;
+    width: fit-content;
+    padding: 1rem;
+    border-radius: .2rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    text-transform: lowercase;
+    margin-inline: auto;
+    font-weight: 500;
+}

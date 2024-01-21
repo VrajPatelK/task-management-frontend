@@ -8,6 +8,9 @@ import { queryClient } from "../../../utils/vars";
 
 import { editUser, getUsers } from "../../../apis/users";
 import Edit from "../../icons/Edit";
+import Loader from "../../Loader/Loader";
+import Label from "../../Labels/Label";
+import ErrorPage from "../../../pages/ErrorPages/ErrorPage";
 
 const EditUserModal = ({ isOpen, onClose, userId }) => {
   const formRef = useRef(null);
@@ -24,19 +27,78 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
   // use mutation
   const { mutate } = useMutation({
     mutationFn: editUser,
+    onError: (error) => toast.error("updatation of user is failed!"),
   });
 
+  var user = undefined;
+  var modalContent = <></>;
   if (userLoader) {
-    return <div>Loading user data...</div>;
-  }
-  if (!userLoader && isUserError) {
-    return <div>{userError}</div>;
-  }
-  if (!userLoader && !isUserError && userData.length === 0) {
-    return <div>user does not found</div>;
-  }
+    modalContent = <Loader />;
+  } else if (!userLoader && isUserError) {
+    return <ErrorPage message={userError.message} status={userError.status} />;
+  } else if (!userLoader && !isUserError && userData?.length === 0) {
+    modalContent = (
+      <Label
+        message={"not found !"}
+        style={{
+          background: "#FF9D15",
+          border: "2px solid #ff9f1a",
 
-  var user = userData?.at(0);
+          textTransform: "capitalize",
+        }}
+      />
+    );
+  } else {
+    user = userData?.at(0);
+    modalContent = (
+      <form ref={formRef} onSubmit={submitHandler} method="POST">
+        <div>
+          <input
+            type="text"
+            name="username"
+            placeholder="@ username"
+            defaultValue={user?.username}
+          />
+        </div>
+        <div>
+          <input
+            type="email"
+            name="email"
+            placeholder="abc@gmail.com"
+            defaultValue={user?.email}
+          />
+        </div>
+        <div>
+          <input type="password" name="password" placeholder="new password" />
+        </div>
+        <div>
+          <input
+            type="password"
+            name="cpassword"
+            placeholder="confirm new password"
+          />
+        </div>
+        <div className="dropdown-div">
+          <select
+            name="user_type"
+            defaultValue={user?.user_type ? user?.user_type : "null"}
+          >
+            <option defaultValue={"null"}>User Type</option>
+            <option value={"developer"}>Developer</option>
+            <option value={"admin"}>Admin</option>
+          </select>
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="cancel-btn" onClick={onClose}>
+            Cancel
+          </button>
+          <button type="submit" className="edit-btn">
+            <Edit /> Edit
+          </button>
+        </div>
+      </form>
+    );
+  }
 
   // handlers
   async function submitHandler(e) {
@@ -81,58 +143,7 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
         <div className="modal-header">
           Edit <EditUser />
         </div>
-        <div className="modal-body">
-          <form ref={formRef} onSubmit={submitHandler} method="POST">
-            <div>
-              <input
-                type="text"
-                name="username"
-                placeholder="@ username"
-                defaultValue={user?.username}
-              />
-            </div>
-            <div>
-              <input
-                type="email"
-                name="email"
-                placeholder="abc@gmail.com"
-                defaultValue={user?.email}
-              />
-            </div>
-            <div>
-              <input
-                type="password"
-                name="password"
-                placeholder="new password"
-              />
-            </div>
-            <div>
-              <input
-                type="password"
-                name="cpassword"
-                placeholder="confirm new password"
-              />
-            </div>
-            <div className="dropdown-div">
-              <select
-                name="user_type"
-                defaultValue={user?.user_type ? user?.user_type : "null"}
-              >
-                <option defaultValue={"null"}>User Type</option>
-                <option value={"developer"}>Developer</option>
-                <option value={"admin"}>Admin</option>
-              </select>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="cancel-btn" onClick={onClose}>
-                Cancel
-              </button>
-              <button type="submit" className="edit-btn">
-                <Edit /> Edit
-              </button>
-            </div>
-          </form>
-        </div>
+        <div className="modal-body">{modalContent}</div>
       </div>
     </ModalLayouts>
   );

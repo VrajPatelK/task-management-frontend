@@ -10,6 +10,13 @@ async function getTasks(apiEndPoint) {
     }
   );
   const responseData = await response.json();
+  if (!response.ok) {
+    const error = new Error();
+    error.message = responseData.message;
+    error.status = response.status;
+    error.errorMessage = responseData.errorMessage;
+    throw error;
+  }
   return responseData;
 }
 
@@ -26,6 +33,13 @@ async function createTask({ body }) {
     }
   );
   const responseData = await response.json();
+  if (!response.ok) {
+    const error = new Error();
+    error.message = responseData.message;
+    error.status = response.status;
+    error.errorMessage = responseData.errorMessage;
+    throw error;
+  }
   return responseData;
 }
 
@@ -42,6 +56,13 @@ async function updateTaskStatus({ apiEndPoint, body }) {
     }
   );
   const responseData = await response.json();
+  if (!response.ok) {
+    const error = new Error();
+    error.message = responseData.message;
+    error.status = response.status;
+    error.errorMessage = responseData.errorMessage;
+    throw error;
+  }
   return responseData;
 }
 
@@ -56,6 +77,13 @@ async function deleteTask(apiEndPoint) {
     }
   );
   const responseData = await response.json();
+  if (!response.ok) {
+    const error = new Error();
+    error.message = responseData.message;
+    error.status = response.status;
+    error.errorMessage = responseData.errorMessage;
+    throw error;
+  }
   return responseData;
 }
 
@@ -72,6 +100,13 @@ async function updateTask({ apiEndPoint, body }) {
     }
   );
   const responseData = await response.json();
+  if (!response.ok) {
+    const error = new Error();
+    error.message = responseData.message;
+    error.status = response.status;
+    error.errorMessage = responseData.errorMessage;
+    throw error;
+  }
   return responseData;
 }
 

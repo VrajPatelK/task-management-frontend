@@ -44,6 +44,7 @@ const CardFooter = ({
   // use mutation
   const { mutate } = useMutation({
     mutationFn: updateTaskStatus,
+    onError: (error) => toast.error("updatation of status of task is failed!"),
   });
 
   // handlers

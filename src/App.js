@@ -13,7 +13,7 @@ import { queryClient } from "./utils/vars";
 import AuthenticationPage from "./pages/AuthenticationPage/AuthenticationPage";
 import { checkSession, getToken, isAuthorized } from "./utils/utils";
 import { redirect } from "react-router-dom";
-import Error404Page from "./pages/ErrorPages/Error404Page";
+import ErrorPage from "./pages/ErrorPages/ErrorPage";
 
 function App() {
   //
@@ -21,6 +21,7 @@ function App() {
     {
       path: "/",
       element: <MainLayout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: "/",
@@ -56,10 +57,10 @@ function App() {
         },
       ],
     },
-    {
-      path: "*",
-      element: <Error404Page />,
-    },
+    // {
+    //   path: "*",
+    //   element: <Error404Page />,
+    // },
   ]);
 
   return (

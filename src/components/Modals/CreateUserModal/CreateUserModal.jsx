@@ -15,6 +15,7 @@ const CreateUserModal = ({ isOpen, onClose }) => {
   // use mutation
   const { mutate } = useMutation({
     mutationFn: createUser,
+    onError: (error) => toast.error("creation of user is failed!"),
   });
 
   // handlers

@@ -14,17 +14,15 @@
 
 .user-page .user-details-layout {
     /* border: 2px solid brown; */
-    /* background: #6c5ce7; */
-    /* background: #5352ed; */
     background: linear-gradient(#7e0cf0, #401988);
+    background: linear-gradient(#74b9ff, #401988);
+    background: linear-gradient(#0984e3, #74b9ff6e, #0984e300);
     color: white;
     border-radius: .5rem;
     position: sticky;
     top: 2rem;
-    /* width: 23%; */
     height: fit-content;
     padding-block: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .user-page .user-details {
@@ -39,13 +37,19 @@
 }
 
 .user-page .user-details .user-row-1 {
-    /* border: 2px solid; */
-    width: 70%;
+    border: 2px solid;
+    background: #fff;
+    /* width: 70%; */
+    border-radius: .5rem;
     margin-inline: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: .5rem;
+    padding: .3rem;
+}
+
+.user-page .user-details .user-row-1 img {
+    border-radius: .5rem;
 }
 
 .user-page .user-details .user-row-2 {
@@ -57,7 +61,9 @@
 .user-page .user-details .user-row-2 .user-username {
     /* border: 2px solid red; */
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
+    color: #0984e3;
+
 }
 
 .user-page .user-details .user-row-3 .user-contact-info {
@@ -65,6 +71,9 @@
     text-transform: capitalize;
     font-weight: 600;
     font-size: 1.2rem;
+    color: #0984e3;
+    text-decoration: underline;
+    margin-bottom: .5rem;
 }
 
 .user-page .user-row-3 {
@@ -74,6 +83,7 @@
     justify-content: space-between;
     align-items: flex-start;
     row-gap: .2rem;
+    color: #0984e3;
 }
 
 .user-page .user-row-3 .user-email {
@@ -83,10 +93,11 @@
     align-items: center;
     column-gap: 1rem;
     font-size: 1rem;
+    font-weight: 600;
 }
 
 .user-page .user-row-3 svg {
 
     width: .8rem;
-    color: white;
+    color: #0984e3;
 }

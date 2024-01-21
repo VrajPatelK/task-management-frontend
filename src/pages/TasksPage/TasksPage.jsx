@@ -15,8 +15,8 @@ import { active_background } from "../../utils/vars";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CreateTask from "../../components/icons/CreateTask";
 import CreateTaskModal from "../../components/Modals/CreateTaskModal/CreateTaskModal";
-// import DownArrow from "../../components/icons/DropArrow";
-// import UpArrow from "../../components/icons/UpArrow";
+import ErrorPage from "../ErrorPages/ErrorPage";
+import { Code } from "react-content-loader";
 
 const TasksPage = () => {
   var initialQuery = "/";
@@ -40,34 +40,34 @@ const TasksPage = () => {
   var taskContent = <></>;
 
   if (isPending) {
-    taskContent = <div>Loading tasks data...</div>;
+    taskContent = (
+      <>
+        <Code />
+        <Code width={900} />
+      </>
+    );
   } else if (!isPending && isError) {
-    taskContent = <div>{error}</div>;
+    return <ErrorPage message={error.message} status={error.status} />;
   } else if (!isPending && !isError && tasks.length === 0) {
     taskContent = <div>tasks are not found</div>;
   } else {
-    taskContent =
-      tasks.length > 0 ? (
-        tasks?.map((task) => {
-          return (
-            <Card
-              key={task.id}
-              taskId={task.id}
-              title={task.title}
-              description={task.description}
-              profile_img={task.profile_img}
-              status={task.status}
-              deadline={task.deadline}
-              assigned_to={task.assigned_to}
-              username={task.username}
-            />
-          );
-        })
-      ) : (
-        <div>any single task doesn't assign</div>
+    taskContent = tasks?.map((task) => {
+      return (
+        <Card
+          key={task.id}
+          taskId={task.id}
+          title={task.title}
+          description={task.description}
+          profile_img={task.profile_img}
+          status={task.status}
+          deadline={task.deadline}
+          assigned_to={task.assigned_to}
+          username={task.username}
+        />
       );
+    });
+    taskContent = <CardContainer>{taskContent}</CardContainer>;
   }
-
   //
   function filterHandler(filterStatus) {
     setQuery(`/status/${filterStatus}`);
@@ -105,10 +105,7 @@ const TasksPage = () => {
               <CreateTask /> create
             </>
           }
-          onMoment={() => {
-            openCreateTaskModal();
-            // console.log("on moment at tasks page:)");
-          }}
+          onMoment={() => openCreateTaskModal()}
           searchBar={
             <div className="serach-bar">
               <SearchBar
@@ -179,9 +176,7 @@ const TasksPage = () => {
           }
         />
       </div>
-      <div className="body">
-        <CardContainer>{taskContent}</CardContainer>
-      </div>
+      <div className="body">{taskContent}</div>
     </>
   );
 };

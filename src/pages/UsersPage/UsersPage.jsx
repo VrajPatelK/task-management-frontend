@@ -8,6 +8,9 @@ import MainHeader from "../../components/MainHeader/MainHeader";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CreateUser from "../../components/icons/CreateUser";
 import CreateUserModal from "../../components/Modals/CreateUserModal/CreateUserModal";
+import Label from "../../components/Labels/Label";
+import ErrorPage from "../ErrorPages/ErrorPage";
+import { Code } from "react-content-loader";
 
 const UsersPage = () => {
   var initialQuery = "/user_type/developer";
@@ -20,8 +23,8 @@ const UsersPage = () => {
   const {
     data: usersData,
     isLoading: usersLoader,
-    isUsersError: isUsersError,
-    usersError: usersError,
+    isError: isUsersError,
+    error: usersError,
   } = useQuery({
     queryFn: () => getUsers(query),
     queryKey: ["users", { query }],
@@ -30,39 +33,42 @@ const UsersPage = () => {
   var usersContent = <></>;
 
   if (usersLoader) {
-    usersContent = <div>Loading users data...</div>;
+    usersContent = (
+      <>
+        <Code />
+        <Code width={1100} />
+      </>
+    );
   } else if (!usersLoader && isUsersError) {
-    usersContent = <div>{usersError}</div>;
+    return (
+      <ErrorPage message={usersError.message} status={usersError.status} />
+    );
   } else if (!usersLoader && !isUsersError && usersData.length === 0) {
-    usersContent = <div>usersData are not found</div>;
-  } else {
-    usersContent =
-      usersData.length > 0 ? (
-        usersData.map((user) => {
-          return (
-            <UserCard
-              key={user.id}
-              userId={user.id}
-              email={user.email}
-              username={user.username}
-              src={user.profile_img}
-              user_type={user.user_type}
-            />
-          );
-        })
-      ) : (
-        <div>any single user doesn't create</div>
-      );
-  }
+    usersContent = (
+      <Label
+        message={"users do not found !"}
+        style={{
+          background: "#FF9D15",
+          border: "2px solid #ff9f1a",
 
-  if (usersLoader) {
-    return <div>Loading user data...</div>;
-  }
-  if (!usersLoader && isUsersError) {
-    return <div>{usersError}</div>;
-  }
-  if (!usersLoader && !isUsersError && usersData.length === 0) {
-    return <div>user does not found</div>;
+          textTransform: "capitalize",
+        }}
+      />
+    );
+  } else {
+    usersContent = usersData.map((user) => {
+      return (
+        <UserCard
+          key={user.id}
+          userId={user.id}
+          email={user.email}
+          username={user.username}
+          src={user.profile_img}
+          user_type={user.user_type}
+        />
+      );
+    });
+    usersContent = <UserCardContainer>{usersContent}</UserCardContainer>;
   }
 
   //
@@ -101,9 +107,7 @@ const UsersPage = () => {
           }
         />
       </div>
-      <div className="body">
-        <UserCardContainer>{usersContent}</UserCardContainer>
-      </div>
+      <div className="body">{usersContent}</div>
     </>
   );
 };

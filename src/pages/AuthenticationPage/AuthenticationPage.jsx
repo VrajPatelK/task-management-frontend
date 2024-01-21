@@ -13,9 +13,8 @@ const AuthenticationPage = () => {
     if (alreadyLoggedIn) {
       navigate(`/users/${getLoggedInUser()?.id}`);
     }
-  }, []);
+  }, [alreadyLoggedIn, navigate]);
 
-  // console.log(data);
   return (
     <AuthenticationLayout>
       <AuthenticationForm />

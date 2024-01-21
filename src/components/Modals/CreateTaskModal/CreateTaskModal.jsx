@@ -11,6 +11,9 @@ import moment from "moment";
 import Plus from "../../icons/Plus";
 import { getLoggedInUser } from "../../../utils/utils";
 import { createTask } from "../../../apis/tasks";
+import Loader from "../../Loader/Loader";
+import Label from "../../Labels/Label";
+import ErrorPage from "../../../pages/ErrorPages/ErrorPage";
 
 const CreateTaskModal = ({ isOpen, onClose }) => {
   const formRef = useRef(null);
@@ -29,16 +32,37 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
   // use mutation
   const { mutate } = useMutation({
     mutationFn: createTask,
+    onError: (error) => toast.error("creation of task is failed!"),
   });
 
+  // users content
+  var usersContent = <></>;
   if (usersLoader) {
-    return <div>Loading user data...</div>;
-  }
-  if (!usersLoader && isUsersError) {
-    return <div>{usersError}</div>;
-  }
-  if (!usersLoader && !isUsersError && usersData.length === 0) {
-    return <div>user does not found</div>;
+    usersContent = <Loader />;
+  } else if (!usersLoader && isUsersError) {
+    return (
+      <ErrorPage message={usersError.message} status={usersError.status} />
+    );
+  } else if (!usersLoader && !isUsersError && usersData.length === 0) {
+    usersContent = (
+      <Label
+        message={"users do not found !"}
+        style={{
+          background: "#FF9D15",
+          border: "2px solid #ff9f1a",
+
+          textTransform: "capitalize",
+        }}
+      />
+    );
+  } else {
+    usersContent = usersData?.map((user) => {
+      return (
+        <option value={user.id} key={user.id}>
+          {user.id}
+        </option>
+      );
+    });
   }
 
   // handlers
@@ -101,13 +125,7 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
               {usersData?.length > 0 ? (
                 <select name="assigned_to" defaultValue={"null"}>
                   <option defaultValue={"null"}>Assigned To</option>
-                  {usersData?.map((user) => {
-                    return (
-                      <option value={user.id} key={user.id}>
-                        {user.id}
-                      </option>
-                    );
-                  })}
+                  {usersContent}
                 </select>
               ) : (
                 <>user data doesn't available</>

@@ -16,7 +16,7 @@
 .edit-task-modal .modal-footer {
     /* border: 2px solid red; */
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     column-gap: .8rem;
 }

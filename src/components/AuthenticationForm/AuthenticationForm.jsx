@@ -19,7 +19,11 @@ const AuthenticationForm = () => {
     localStorage.setItem("user", JSON.stringify(result?.user));
     setTimeout(() => {
       setLoader(false);
-      navigate(`/users/${result?.user?.id}`);
+      if (result?.user?.user_type === "admin") {
+        navigate(`/users`);
+      } else {
+        navigate(`/users/${result?.user?.id}`);
+      }
     }, 1500);
   }
 

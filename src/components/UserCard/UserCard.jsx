@@ -6,7 +6,7 @@ import OptionsLayout from "../../layouts/OptionsLayout/OptionsLayout";
 import OptionBtn from "../Options/OptionBtn";
 import Edit from "../icons/Edit";
 import Delete from "../icons/Delete";
-import Dots_3 from "../icons/Dots3";
+import Dots3 from "../icons/Dots3";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../../utils/vars";
 import toast from "react-hot-toast";
@@ -24,6 +24,7 @@ const UserCard = ({
 }) => {
   const { mutate } = useMutation({
     mutationFn: deleteUser,
+    onError: (error) => toast.error("deletion of user is failed!"),
   });
 
   // modal states
@@ -66,7 +67,7 @@ const UserCard = ({
           {/* edit & delete options */}
           {displayEditDelete && (
             <div className="button-grp">
-              <OptionsLayout title={<Dots_3></Dots_3>}>
+              <OptionsLayout title={<Dots3></Dots3>}>
                 <OptionBtn style={{ color: "#3742fa" }} onAction={openModal}>
                   Edit
                   <Edit />

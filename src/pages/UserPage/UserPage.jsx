@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import "./UserPage.css";
-import ProfileImg from "../../components/ProfileImg/ProfileImg";
 import Card from "../../components/Card/Card";
 import CardContainer from "../../components/CardContainer/CardContainer";
-import Email from "../../components/icons/Email";
-import Mobile from "../../components/icons/Mobile";
 
 import { useParams } from "react-router-dom";
 import { getUsers } from "../../apis/users";
 import { getTasks } from "../../apis/tasks";
 import { useQuery } from "@tanstack/react-query";
+
 import MainHeader from "../../components/MainHeader/MainHeader";
 import OptionsLayout from "../../layouts/OptionsLayout/OptionsLayout";
 import OptionBtn from "../../components/Options/OptionBtn";
@@ -18,6 +16,10 @@ import InProgress from "../../components/icons/InProgress";
 import Completed from "../../components/icons/Completed";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { active_background } from "../../utils/vars";
+import ErrorPage from "../ErrorPages/ErrorPage";
+import UserInfoCard from "./UserInfoCard";
+import Label from "../../components/Labels/Label";
+import ContentLoader, { Code, Instagram } from "react-content-loader";
 
 const UserPage = () => {
   const { userId } = useParams();
@@ -67,61 +69,102 @@ const UserPage = () => {
     }
   }
 
+  var userContent = <></>;
+  var user = undefined;
   if (userLoader) {
-    return <div>Loading user data...</div>;
-  }
-  if (!userLoader && isUserError) {
-    return <div>{userError}</div>;
-  }
-  if (!userLoader && !isUserError && userData.length === 0) {
-    return <div>user does not found</div>;
-  }
-  var user = userData?.at(0);
+    userContent = <Instagram />;
+  } else if (!userLoader && isUserError) {
+    return <ErrorPage message={userError.message} status={userError.status} />;
+  } else if (!userLoader && !isUserError && userData?.length === 0) {
+    userContent = (
+      <Label
+        message={"not found !"}
+        style={{
+          background: "#FF9D15",
+          border: "2px solid #ff9f1a",
 
-  if (tasksLoader) {
-    return <div>Loading user's task data...</div>;
-  }
-  if (!tasksLoader && isTasksError) {
-    return <div>{tasksError.message}</div>;
+          textTransform: "capitalize",
+        }}
+      />
+    );
+  } else {
+    user = userData?.at(0);
+    userContent = (
+      <UserInfoCard
+        username={user?.username}
+        email={user?.email}
+        profile_img={user?.profile_img}
+      />
+    );
   }
 
   var taskContent = <></>;
   if (tasksLoader) {
-    taskContent = <div>Loading users's tasks data...</div>;
+    taskContent = (
+      <>
+        <Code />
+        <Code width={900} />
+      </>
+    );
   } else if (!tasksLoader && isTasksError) {
-    taskContent = <div>{tasksError.message}</div>;
+    return (
+      <ErrorPage message={tasksError.message} status={tasksError.status} />
+    );
   } else if (!tasksLoader && !isTasksError && tasksData.length === 0) {
-    taskContent = <div>tasks are not found for this user</div>;
+    taskContent = (
+      <Label
+        message={"tasks do not found !"}
+        style={{
+          background: "#FF9D15",
+          border: "2px solid #ff9f1a",
+
+          textTransform: "capitalize",
+        }}
+      />
+    );
   } else {
-    taskContent =
-      tasksData.length > 0 ? (
-        tasksData?.map((task) => {
-          return (
-            <Card
-              key={task.id}
-              taskId={task.id}
-              title={task.title}
-              description={task.description}
-              profile_img={task.profile_img}
-              status={task.status}
-              deadline={task.deadline}
-              assigned_to={task.assigned_to}
-              username={task.username}
-              displayProfileIcon={false}
-              displayEditDelete={false}
-            />
-          );
-        })
-      ) : (
-        <div>any single task doesn't assign</div>
+    taskContent = tasksData?.map((task) => {
+      return (
+        <Card
+          key={task.id}
+          taskId={task.id}
+          title={task.title}
+          description={task.description}
+          profile_img={task.profile_img}
+          status={task.status}
+          deadline={task.deadline}
+          assigned_to={task.assigned_to}
+          username={task.username}
+          displayProfileIcon={false}
+          displayEditDelete={false}
+        />
       );
+    });
+    taskContent = <CardContainer>{taskContent}</CardContainer>;
   }
 
   return (
     <>
       <div className="main-header">
         <MainHeader
-          title={`${user?.username}'s Task`}
+          title={
+            user ? (
+              `${user?.username}'s Task`
+            ) : (
+              <ContentLoader
+                style={{ width: "13rem" }}
+                speed={2}
+                backgroundColor={"#F4F6FA"}
+                foregroundColor={"#999"}
+                viewBox="0 0 380 70"
+              >
+                {/* Only SVG shapes */}
+                <rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
+                <rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
+                <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
+              </ContentLoader>
+            )
+          }
           searchBar={
             <div className="serach-bar">
               <SearchBar
@@ -195,44 +238,10 @@ const UserPage = () => {
       <div className="body">
         <div className="user-page">
           <div className="user-tasks-layout">
-            <div className="user-tasks">
-              <CardContainer>{taskContent}</CardContainer>
-            </div>
+            <div className="user-tasks">{taskContent}</div>
           </div>
           <div className="user-details-layout">
-            {!user && (
-              <div
-                style={{
-                  textAlign: "center",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  fontSize: "1.2rem",
-                  textTransform: "capitalize",
-                }}
-              >
-                user doesn't found
-              </div>
-            )}
-            {user && (
-              <div className="user-details">
-                <div className="user-row-1">
-                  <ProfileImg alt={user?.username} src={user?.profile_img} />
-                </div>
-                <div className="user-row-2">
-                  <div className="user-username">
-                    <span style={{ marginRight: ".2rem" }}>@</span>
-                    <i>{user?.username}</i>
-                  </div>
-                </div>
-                <div className="user-row-3">
-                  <div className="user-contact-info">contact information</div>
-                  <div className="user-email">
-                    <Email /> <span>{user?.email}</span>
-                  </div>
-                </div>
-              </div>
-            )}
+            <div className="user-details">{userContent}</div>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Dots3 from "../icons/Dots3";
 import OptionsLayout from "../../layouts/OptionsLayout/OptionsLayout";
 import Edit from "../icons/Edit";
@@ -18,6 +18,7 @@ const CardHeader = ({
 }) => {
   const { mutate } = useMutation({
     mutationFn: deleteTask,
+    onError: (error) => toast.error("deletion of task is failed!"),
   });
 
   // handlers

@@ -8,6 +8,9 @@ import { queryClient } from "../../../utils/vars";
 import { getTasks, updateTask } from "../../../apis/tasks";
 import moment from "moment";
 import { getUsers } from "../../../apis/users";
+import Loader from "../../Loader/Loader";
+import Label from "../../Labels/Label";
+import ErrorPage from "../../../pages/ErrorPages/ErrorPage";
 
 const EditTaskModal = ({ isOpen, onClose, taskId }) => {
   const formRef = useRef(null);
@@ -19,7 +22,7 @@ const EditTaskModal = ({ isOpen, onClose, taskId }) => {
     error: taskError,
   } = useQuery({
     queryFn: () => getTasks(`/${taskId}`),
-    queryKey: ["task", { taskId }],
+    queryKey: ["tasks", { taskId }],
   });
 
   const {
@@ -35,62 +38,73 @@ const EditTaskModal = ({ isOpen, onClose, taskId }) => {
   // use mutation
   const { mutate } = useMutation({
     mutationFn: updateTask,
+    onError: (error) => toast.error("updatation of task is failed!"),
   });
 
+  // users content
+  var usersContent = <></>;
   if (usersLoader) {
-    return <div>Loading user data...</div>;
-  }
-  if (!usersLoader && isUsersError) {
-    return <div>{usersError}</div>;
-  }
-  if (!usersLoader && !isUsersError && usersData.length === 0) {
-    return <div>user does not found</div>;
+    usersContent = <Loader />;
+  } else if (!usersLoader && isUsersError) {
+    return (
+      <ErrorPage message={usersError.message} status={usersError.status} />
+    );
+  } else if (!usersLoader && !isUsersError && usersData.length === 0) {
+    usersContent = (
+      <Label
+        message={"users do not found !"}
+        style={{
+          background: "#FF9D15",
+          border: "2px solid #ff9f1a",
+
+          textTransform: "capitalize",
+        }}
+      />
+    );
+  } else {
+    usersContent = usersData?.map((user) => {
+      return (
+        <option value={user.id} key={user.id}>
+          {user.id}
+        </option>
+      );
+    });
   }
 
+  // modal content
+  var modalContent = <></>;
   if (isTaskPending) {
-    return <div>Loading tasks data...</div>;
+    modalContent = <Loader />;
   }
   if (!isTaskPending && isTaskError) {
-    return <div>{taskError.message}</div>;
+    return <ErrorPage message={taskError.message} status={taskError.status} />;
   }
   if (!isTaskPending && !isTaskError && taskData?.length === 0) {
-    return <div></div>;
-  }
+    modalContent = (
+      <Label
+        message={"task does not found !"}
+        style={{
+          background: "#FF9D15",
+          border: "2px solid #ff9f1a",
 
-  var task = taskData?.at(0);
-
-  // handlers
-  async function changeTaskHandler() {
-    //
-    const formData = new FormData(formRef.current);
-    var body = {
-      title: formData.get("title"),
-      description: formData.get("description"),
-      assigned_to: parseInt(formData.get("assigned_to")),
-      status: formData.get("status"),
-      deadline: formData.get("deadline"),
-    };
-
-    mutate(
-      { apiEndPoint: `/${taskId}`, body },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["tasks"] });
-          toast.success("task updated!");
-          onClose();
-        },
-      }
+          textTransform: "capitalize",
+        }}
+      />
     );
-  }
-  var formatedDeadline = `${moment(task?.deadline).format(
-    "YYYY-MM-DD"
-  )}T${moment(task?.deadline).format("hh:mm")}`;
-  var formatedMinDeadline = `${moment(new Date()).format(
-    "YYYY-MM-DD"
-  )}T${moment(new Date()).format("hh:mm")}`;
+  } else {
+    //
+    var task = taskData?.at(0);
 
-  return (
-    <ModalLayouts isOpen={isOpen} onClose={onClose}>
+    //
+    var formatedDeadline = `${moment(task?.deadline).format(
+      "YYYY-MM-DD"
+    )}T${moment(task?.deadline).format("hh:mm")}`;
+    var formatedMinDeadline = `${moment(new Date()).format(
+      "YYYY-MM-DD"
+    )}T${moment(new Date()).format("hh:mm")}`;
+
+    //
+    modalContent = (
       <div className="edit-task-modal">
         <div className="modal-header">
           Edit Task <Edit />
@@ -123,23 +137,13 @@ const EditTaskModal = ({ isOpen, onClose, taskId }) => {
               ></textarea>
             </div>
             <div>
-              {usersData?.length > 0 ? (
-                <select
-                  name="assigned_to"
-                  defaultValue={task?.assigned_to ? task?.assigned_to : "null"}
-                >
-                  <option defaultValue={"null"}>Assigned To</option>
-                  {usersData?.map((user) => {
-                    return (
-                      <option value={user.id} key={user.id}>
-                        {user.id}
-                      </option>
-                    );
-                  })}
-                </select>
-              ) : (
-                <>user data doesn't available</>
-              )}
+              <select
+                name="assigned_to"
+                defaultValue={task?.assigned_to ? task?.assigned_to : "null"}
+              >
+                <option defaultValue={"null"}>Assigned To</option>
+                {usersContent}
+              </select>
             </div>
             <div>
               <select
@@ -180,6 +184,35 @@ const EditTaskModal = ({ isOpen, onClose, taskId }) => {
           </button>
         </div>
       </div>
+    );
+  }
+  // handlers
+  async function changeTaskHandler() {
+    //
+    const formData = new FormData(formRef.current);
+    var body = {
+      title: formData.get("title"),
+      description: formData.get("description"),
+      assigned_to: parseInt(formData.get("assigned_to")),
+      status: formData.get("status"),
+      deadline: formData.get("deadline"),
+    };
+
+    mutate(
+      { apiEndPoint: `/${taskId}`, body },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["tasks"] });
+          toast.success("task updated!");
+          onClose();
+        },
+      }
+    );
+  }
+
+  return (
+    <ModalLayouts isOpen={isOpen} onClose={onClose}>
+      {modalContent}
     </ModalLayouts>
   );
 };

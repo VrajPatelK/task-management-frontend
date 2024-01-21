@@ -10,6 +10,13 @@ async function getUsers(apiEndPoint) {
     }
   );
   const responseData = await response.json();
+  if (!response.ok) {
+    const error = new Error();
+    error.message = responseData.message;
+    error.status = response.status;
+    error.errorMessage = responseData.errorMessage;
+    throw error;
+  }
   return responseData;
 }
 
@@ -26,6 +33,13 @@ async function createUser({ body }) {
     }
   );
   const responseData = await response.json();
+  if (!response.ok) {
+    const error = new Error();
+    error.message = responseData.message;
+    error.status = response.status;
+    error.errorMessage = responseData.errorMessage;
+    throw error;
+  }
   return responseData;
 }
 
@@ -42,6 +56,13 @@ async function editUser({ apiEndPoint, body }) {
     }
   );
   const responseData = await response.json();
+  if (!response.ok) {
+    const error = new Error();
+    error.message = responseData.message;
+    error.status = response.status;
+    error.errorMessage = responseData.errorMessage;
+    throw error;
+  }
   return responseData;
 }
 
@@ -57,6 +78,13 @@ async function deleteUser(apiEndPoint) {
     }
   );
   const responseData = await response.json();
+  if (!response.ok) {
+    const error = new Error();
+    error.message = responseData.message;
+    error.status = response.status;
+    error.errorMessage = responseData.errorMessage;
+    throw error;
+  }
   return responseData;
 }
 
@@ -73,6 +101,13 @@ async function userLogin(body) {
   );
 
   const responseData = await response.json();
+  if (!response.ok) {
+    const error = new Error();
+    error.message = responseData.message;
+    error.status = response.status;
+    error.errorMessage = responseData.errorMessage;
+    throw error;
+  }
   return responseData;
 }
 
