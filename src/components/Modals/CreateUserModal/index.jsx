@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import "./CreateUserModal.css";
-import ModalLayouts from "../../../layouts/ModalLayouts/ModalLayouts";
+import ModalLayouts from "../../../layouts/ModalLayouts";
 import CreateUser from "../../icons/CreateUser";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";

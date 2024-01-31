@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import "./EditTaskModal.css";
-import ModalLayouts from "../../../layouts/ModalLayouts/ModalLayouts";
+import ModalLayouts from "../../../layouts/ModalLayouts";
 import Edit from "../../icons/Edit";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -8,9 +8,9 @@ import { queryClient } from "../../../utils/vars";
 import { getTasks, updateTask } from "../../../apis/tasks";
 import moment from "moment";
 import { getUsers } from "../../../apis/users";
-import Loader from "../../Loader/Loader";
-import Label from "../../Labels/Label";
-import ErrorPage from "../../../pages/ErrorPages/ErrorPage";
+import Loader from "../../Loader";
+import Label from "../../Labels";
+import ErrorPage from "../../../pages/ErrorPages";
 
 const EditTaskModal = ({ isOpen, onClose, taskId }) => {
   const formRef = useRef(null);

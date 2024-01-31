@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import "./EditUserModal.css";
-import ModalLayouts from "../../../layouts/ModalLayouts/ModalLayouts";
+import ModalLayouts from "../../../layouts/ModalLayouts";
 import EditUser from "../../icons/EditUser";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -8,9 +8,9 @@ import { queryClient } from "../../../utils/vars";
 
 import { editUser, getUsers } from "../../../apis/users";
 import Edit from "../../icons/Edit";
-import Loader from "../../Loader/Loader";
-import Label from "../../Labels/Label";
-import ErrorPage from "../../../pages/ErrorPages/ErrorPage";
+import Loader from "../../Loader";
+import Label from "../../Labels";
+import ErrorPage from "../../../pages/ErrorPages";
 
 const EditUserModal = ({ isOpen, onClose, userId }) => {
   const formRef = useRef(null);

@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import "./UserPage.css";
-import Card from "../../components/Card/Card";
-import CardContainer from "../../components/CardContainer/CardContainer";
+import Card from "../../components/Card";
+import CardContainer from "../../components/CardContainer";
 
 import { useParams } from "react-router-dom";
 import { getUsers } from "../../apis/users";
 import { getTasks } from "../../apis/tasks";
 import { useQuery } from "@tanstack/react-query";
 
-import MainHeader from "../../components/MainHeader/MainHeader";
-import OptionsLayout from "../../layouts/OptionsLayout/OptionsLayout";
+import MainHeader from "../../components/MainHeader";
+import OptionsLayout from "../../layouts/OptionsLayout";
 import OptionBtn from "../../components/Options/OptionBtn";
 import Pending from "../../components/icons/Pending";
 import InProgress from "../../components/icons/InProgress";
 import Completed from "../../components/icons/Completed";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchBar from "../../components/SearchBar";
 import { active_background } from "../../utils/vars";
-import ErrorPage from "../ErrorPages/ErrorPage";
+import ErrorPage from "../ErrorPages";
 import UserInfoCard from "./UserInfoCard";
-import Label from "../../components/Labels/Label";
+import Label from "../../components/Labels";
 import ContentLoader, { Code, Instagram } from "react-content-loader";
 
 const UserPage = () => {

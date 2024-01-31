@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import "./CreateTaskModal.css";
-import ModalLayouts from "../../../layouts/ModalLayouts/ModalLayouts";
+import ModalLayouts from "../../../layouts/ModalLayouts";
 import CreateTask from "../../icons/CreateTask";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -11,9 +11,9 @@ import moment from "moment";
 import Plus from "../../icons/Plus";
 import { getLoggedInUser } from "../../../utils/utils";
 import { createTask } from "../../../apis/tasks";
-import Loader from "../../Loader/Loader";
-import Label from "../../Labels/Label";
-import ErrorPage from "../../../pages/ErrorPages/ErrorPage";
+import Loader from "../../Loader";
+import Label from "../../Labels";
+import ErrorPage from "../../../pages/ErrorPages";
 
 const CreateTaskModal = ({ isOpen, onClose }) => {
   const formRef = useRef(null);

@@ -1,6 +1,6 @@
 import React from "react";
 import Dots3 from "../icons/Dots3";
-import OptionsLayout from "../../layouts/OptionsLayout/OptionsLayout";
+import OptionsLayout from "../../layouts/OptionsLayout";
 import Edit from "../icons/Edit";
 import Delete from "../icons/Delete";
 import OptionBtn from "../Options/OptionBtn";

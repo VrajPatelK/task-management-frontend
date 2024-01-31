@@ -1,112 +1,48 @@
-import { getToken } from "../utils/utils";
+import { getResponseData, getApiOptions } from "../utils/utils";
+const baseUrl = process.env.REACT_APP_SERVER_DOMAIN;
 
 async function getTasks(apiEndPoint) {
   const response = await fetch(
-    `${process.env.REACT_APP_SERVER_DOMAIN}/api/v1/tasks${apiEndPoint}`,
-    {
-      headers: {
-        token: getToken(),
-      },
-    }
+    `${baseUrl}/api/v1/tasks${apiEndPoint}`,
+    getApiOptions("GET")
   );
-  const responseData = await response.json();
-  if (!response.ok) {
-    const error = new Error();
-    error.message = responseData.message;
-    error.status = response.status;
-    error.errorMessage = responseData.errorMessage;
-    throw error;
-  }
+  const responseData = await getResponseData(response);
   return responseData;
 }
 
 async function createTask({ body }) {
   const response = await fetch(
-    `${process.env.REACT_APP_SERVER_DOMAIN}/api/v1/tasks/create`,
-    {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-        token: getToken(),
-      },
-    }
+    `${baseUrl}/api/v1/tasks/create`,
+    getApiOptions("POST", body)
   );
-  const responseData = await response.json();
-  if (!response.ok) {
-    const error = new Error();
-    error.message = responseData.message;
-    error.status = response.status;
-    error.errorMessage = responseData.errorMessage;
-    throw error;
-  }
+  const responseData = await getResponseData(response);
   return responseData;
 }
 
 async function updateTaskStatus({ apiEndPoint, body }) {
   const response = await fetch(
-    `${process.env.REACT_APP_SERVER_DOMAIN}/api/v1/tasks/edit/status${apiEndPoint}`,
-    {
-      body: JSON.stringify(body),
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        token: getToken(),
-      },
-    }
+    `${baseUrl}/api/v1/tasks/edit/status${apiEndPoint}`,
+    getApiOptions("PUT", body)
   );
-  const responseData = await response.json();
-  if (!response.ok) {
-    const error = new Error();
-    error.message = responseData.message;
-    error.status = response.status;
-    error.errorMessage = responseData.errorMessage;
-    throw error;
-  }
+  const responseData = await getResponseData(response);
   return responseData;
 }
 
 async function deleteTask(apiEndPoint) {
   const response = await fetch(
-    `${process.env.REACT_APP_SERVER_DOMAIN}/api/v1/tasks/delete${apiEndPoint}`,
-    {
-      method: "DELETE",
-      headers: {
-        token: getToken(),
-      },
-    }
+    `${baseUrl}/api/v1/tasks/delete${apiEndPoint}`,
+    getApiOptions("DELETE")
   );
-  const responseData = await response.json();
-  if (!response.ok) {
-    const error = new Error();
-    error.message = responseData.message;
-    error.status = response.status;
-    error.errorMessage = responseData.errorMessage;
-    throw error;
-  }
+  const responseData = await getResponseData(response);
   return responseData;
 }
 
 async function updateTask({ apiEndPoint, body }) {
   const response = await fetch(
-    `${process.env.REACT_APP_SERVER_DOMAIN}/api/v1/tasks/edit${apiEndPoint}`,
-    {
-      body: JSON.stringify(body),
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        token: getToken(),
-      },
-    }
+    `${baseUrl}/api/v1/tasks/edit${apiEndPoint}`,
+    getApiOptions("PUT", body)
   );
-  const responseData = await response.json();
-  if (!response.ok) {
-    const error = new Error();
-    error.message = responseData.message;
-    error.status = response.status;
-    error.errorMessage = responseData.errorMessage;
-    throw error;
-  }
+  const responseData = await getResponseData(response);
   return responseData;
 }
 

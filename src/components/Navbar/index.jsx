@@ -1,9 +1,9 @@
 import React from "react";
-import Logo from "../Logo/Logo";
+import Logo from "../Logo";
 import "./Navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { checkSession, getLoggedInUser, isAdmin } from "../../utils/utils";
-import ProfileImg from "../ProfileImg/ProfileImg";
+import ProfileImg from "../ProfileImg";
 
 import Logout from "../icons/Logout";
 import Users from "../icons/Users";
@@ -19,6 +19,7 @@ const Navbar = () => {
       : "rgb(103 255 106)";
 
   const isActive = (to) => location.pathname.includes(to);
+  const isLoggedIn = checkSession();
 
   return (
     <div className="navbar">
@@ -44,7 +45,7 @@ const Navbar = () => {
             <Tasks />
           </Link>
         )}
-        {!checkSession() && (
+        {!isLoggedIn && (
           <Link
             className={`menu${isActive("/auth") ? " active-menu" : ""}`}
             to={"/auth"}
@@ -52,7 +53,7 @@ const Navbar = () => {
             Login
           </Link>
         )}
-        {checkSession() && (
+        {isLoggedIn && (
           <div
             className="menu logout-btn"
             onClick={() => {
@@ -64,7 +65,7 @@ const Navbar = () => {
             <Logout />
           </div>
         )}
-        {checkSession() && (
+        {isLoggedIn && (
           <div className="navbar-footer">
             <div className=" profile-div">
               <div className="user-info">

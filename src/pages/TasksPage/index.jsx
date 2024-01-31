@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import "./TasksPage.css";
-import Card from "../../components/Card/Card";
-import CardContainer from "../../components/CardContainer/CardContainer";
+import Card from "../../components/Card";
+import CardContainer from "../../components/CardContainer";
 import { getTasks } from "../../apis/tasks";
 import { useQuery } from "@tanstack/react-query";
-import MainHeader from "../../components/MainHeader/MainHeader";
+import MainHeader from "../../components/MainHeader";
 
 import OptionBtn from "../../components/Options/OptionBtn";
-import OptionsLayout from "../../layouts/OptionsLayout/OptionsLayout";
+import OptionsLayout from "../../layouts/OptionsLayout";
 import Pending from "../../components/icons/Pending";
 import InProgress from "../../components/icons/InProgress";
 import Completed from "../../components/icons/Completed";
 import { active_background } from "../../utils/vars";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchBar from "../../components/SearchBar";
 import CreateTask from "../../components/icons/CreateTask";
-import CreateTaskModal from "../../components/Modals/CreateTaskModal/CreateTaskModal";
-import ErrorPage from "../ErrorPages/ErrorPage";
+import CreateTaskModal from "../../components/Modals/CreateTaskModal";
+import ErrorPage from "../ErrorPages";
 import { Code } from "react-content-loader";
 
 const TasksPage = () => {

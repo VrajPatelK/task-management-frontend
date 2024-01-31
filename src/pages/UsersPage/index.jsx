@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import "./UsersPage.css";
-import UserCard from "../../components/UserCard/UserCard";
-import UserCardContainer from "../../components/UserCardContainer/UserCardContainer";
+import UserCard from "../../components/UserCard";
+import UserCardContainer from "../../components/UserCardContainer";
 import { getUsers } from "../../apis/users";
 import { useQuery } from "@tanstack/react-query";
-import MainHeader from "../../components/MainHeader/MainHeader";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import MainHeader from "../../components/MainHeader";
+import SearchBar from "../../components/SearchBar";
 import CreateUser from "../../components/icons/CreateUser";
-import CreateUserModal from "../../components/Modals/CreateUserModal/CreateUserModal";
-import Label from "../../components/Labels/Label";
-import ErrorPage from "../ErrorPages/ErrorPage";
+import CreateUserModal from "../../components/Modals/CreateUserModal";
+import Label from "../../components/Labels";
+import ErrorPage from "../ErrorPages";
 import { Code } from "react-content-loader";
 
 const UsersPage = () => {

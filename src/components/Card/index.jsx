@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import CardLayout from "../../layouts/CardLayout/CardLayout";
+import CardLayout from "../../layouts/CardLayout";
 import CardHeader from "./CardHeader";
 import CardBody from "./CardBody";
 import CardFooter from "./CardFooter";
 
 import "./Card.css";
-import EditTaskModal from "../Modals/EditTaskModal/EditTaskModal";
+import EditTaskModal from "../Modals/EditTaskModal";
 import { isAdmin } from "../../utils/utils";
 
 const Card = ({

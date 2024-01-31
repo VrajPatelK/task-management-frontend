@@ -1,6 +1,6 @@
 import React from "react";
 import Email from "../../components/icons/Email";
-import ProfileImg from "../../components/ProfileImg/ProfileImg";
+import ProfileImg from "../../components/ProfileImg";
 
 const UserInfoCard = ({ username, profile_img, email }) => {
   return (

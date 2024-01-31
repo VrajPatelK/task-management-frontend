@@ -1,6 +1,6 @@
 import React from "react";
 import "./MainLayout.css";
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../components/Navbar";
 import { Outlet } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 

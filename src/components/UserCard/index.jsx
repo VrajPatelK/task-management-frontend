@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./UserCard.css";
-import UserCardLayout from "../../layouts/UserCardLayout/UserCardLayout";
-import ProfileImg from "../ProfileImg/ProfileImg";
-import OptionsLayout from "../../layouts/OptionsLayout/OptionsLayout";
+import UserCardLayout from "../../layouts/UserCardLayout";
+import ProfileImg from "../ProfileImg";
+import OptionsLayout from "../../layouts/OptionsLayout";
 import OptionBtn from "../Options/OptionBtn";
 import Edit from "../icons/Edit";
 import Delete from "../icons/Delete";
@@ -12,7 +12,7 @@ import { queryClient } from "../../utils/vars";
 import toast from "react-hot-toast";
 import { deleteUser } from "../../apis/users";
 import { Link } from "react-router-dom";
-import EditUserModal from "../Modals/EditUserModal/EditUserModal";
+import EditUserModal from "../Modals/EditUserModal";
 
 const UserCard = ({
   userId,
