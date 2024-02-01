@@ -14,13 +14,7 @@ var forCompleted = {
   color: "#2ed573",
   icon: <Completed />,
 };
-var active_background = "#f5f6fa";
+
 const queryClient = new QueryClient();
 
-export {
-  forCompleted,
-  forInProgress,
-  forPeding,
-  active_background,
-  queryClient,
-};
+export { forCompleted, forInProgress, forPeding, queryClient };

@@ -12,7 +12,6 @@ import { queryClient } from "../../utils/vars";
 const CardHeader = ({
   taskId,
   title,
-  assigned_to,
   displayEditDelete,
   openEditTaskModal = () => {},
 }) => {
@@ -37,17 +36,11 @@ const CardHeader = ({
       {displayEditDelete && (
         <div className="button-grp">
           <OptionsLayout title={<Dots3></Dots3>}>
-            <OptionBtn
-              style={{ color: "#3742fa" }}
-              onAction={openEditTaskModal}
-            >
+            <OptionBtn className="edit-btn" onAction={openEditTaskModal}>
               Edit
               <Edit />
             </OptionBtn>
-            <OptionBtn
-              style={{ color: "#ff4757" }}
-              onAction={taskDeleteHandler}
-            >
+            <OptionBtn className="delete-btn" onAction={taskDeleteHandler}>
               Delete
               <Delete />
             </OptionBtn>

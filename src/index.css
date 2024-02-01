@@ -30,3 +30,31 @@ a {
   text-decoration: none;
   color: black;
 }
+
+.edit-btn {
+  color: #3742fa;
+}
+
+.delete-btn {
+  color: #ff4757;
+}
+
+.pending-option {
+  color: #3742fa;
+}
+
+.in-progress-option {
+  color: #ffa502;
+}
+
+.completed-option {
+  color: #2ed573;
+}
+
+.active-background {
+  background: #f5f6fa !important;
+}
+
+.content-loader {
+  width: 13rem;
+}

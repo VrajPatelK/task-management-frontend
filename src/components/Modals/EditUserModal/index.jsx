@@ -37,17 +37,7 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
   } else if (!userLoader && isUserError) {
     return <ErrorPage message={userError.message} status={userError.status} />;
   } else if (!userLoader && !isUserError && userData?.length === 0) {
-    modalContent = (
-      <Label
-        message={"not found !"}
-        style={{
-          background: "#FF9D15",
-          border: "2px solid #ff9f1a",
-
-          textTransform: "capitalize",
-        }}
-      />
-    );
+    modalContent = <Label message={"not found !"} />;
   } else {
     user = userData?.at(0);
     modalContent = (

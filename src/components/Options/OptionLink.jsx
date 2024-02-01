@@ -8,12 +8,9 @@ const OptionLink = ({ children, style = { color: "#000" }, to = "#" }) => {
 
   return (
     <Link
-      className={`link${isActive(to) ? " active" : ""}`}
+      className={`link ${isActive(to) ? "active" : ""}`}
       to={to}
-      style={{
-        textTransform: "capitalize",
-        ...style,
-      }}
+      style={style}
     >
       {children}
     </Link>

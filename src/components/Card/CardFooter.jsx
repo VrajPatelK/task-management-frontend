@@ -12,7 +12,6 @@ import {
   forCompleted,
   forInProgress,
   forPeding,
-  active_background,
   queryClient,
 } from "../../utils/vars";
 import { updateTaskStatus } from "../../apis/tasks";
@@ -81,30 +80,27 @@ const CardFooter = ({
         }
       >
         <OptionBtn
-          style={{
-            color: "#3742fa",
-            background: status === "pending" && active_background,
-          }}
+          className={`pending-option ${
+            status === "pending" && "active-background"
+          }`}
           onAction={() => changeStatusHandler("pending")}
         >
           pending
           {<Pending />}
         </OptionBtn>
         <OptionBtn
-          style={{
-            color: "#ffa502",
-            background: status === "in-progress" && active_background,
-          }}
+          className={`in-progress-option ${
+            status === "in-progress" && "active-background"
+          }`}
           onAction={() => changeStatusHandler("in-progress")}
         >
           in progress
           <InProgress />
         </OptionBtn>
         <OptionBtn
-          style={{
-            color: "#2ed573",
-            background: status === "completed" && active_background,
-          }}
+          className={`completed-option ${
+            status === "completed" && "active-background"
+          }`}
           onAction={() => changeStatusHandler("completed")}
         >
           completed

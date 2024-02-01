@@ -43,20 +43,10 @@ const UsersPage = () => {
     return (
       <ErrorPage message={usersError.message} status={usersError.status} />
     );
-  } else if (!usersLoader && !isUsersError && usersData.length === 0) {
-    usersContent = (
-      <Label
-        message={"users do not found !"}
-        style={{
-          background: "#FF9D15",
-          border: "2px solid #ff9f1a",
-
-          textTransform: "capitalize",
-        }}
-      />
-    );
+  } else if (!usersLoader && !isUsersError && usersData?.length === 0) {
+    usersContent = <Label message={"users do not found !"} />;
   } else {
-    usersContent = usersData.map((user) => {
+    usersContent = usersData?.map((user) => {
       return (
         <UserCard
           key={user.id}
@@ -73,7 +63,7 @@ const UsersPage = () => {
 
   //
   function searchHandler(searchquery = "") {
-    if (searchquery.length === 0 || !searchquery) {
+    if (searchquery?.length === 0 || !searchquery) {
       setQuery(initialQuery);
     } else {
       setQuery(`/search/${searchquery}`);

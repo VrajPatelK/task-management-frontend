@@ -10,7 +10,7 @@ const UserInfoCard = ({ username, profile_img, email }) => {
       </div>
       <div className="user-row-2">
         <div className="user-username">
-          <span style={{ marginRight: ".2rem" }}>@</span>
+          <span>@</span>
           <i>{username}</i>
         </div>
       </div>

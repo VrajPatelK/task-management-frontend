@@ -101,3 +101,7 @@
     width: .8rem;
     color: #0984e3;
 }
+
+.user-username span {
+    margin-right: .2rem;
+}

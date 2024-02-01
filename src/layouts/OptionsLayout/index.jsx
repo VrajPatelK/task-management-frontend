@@ -17,7 +17,7 @@ const OptionsLayout = ({
     >
       <div
         onMouseEnter={() => setDisplay(true)}
-        style={{ ...title_style }}
+        style={title_style}
         className="title"
       >
         {title}

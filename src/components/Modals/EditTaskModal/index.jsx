@@ -49,18 +49,8 @@ const EditTaskModal = ({ isOpen, onClose, taskId }) => {
     return (
       <ErrorPage message={usersError.message} status={usersError.status} />
     );
-  } else if (!usersLoader && !isUsersError && usersData.length === 0) {
-    usersContent = (
-      <Label
-        message={"users do not found !"}
-        style={{
-          background: "#FF9D15",
-          border: "2px solid #ff9f1a",
-
-          textTransform: "capitalize",
-        }}
-      />
-    );
+  } else if (!usersLoader && !isUsersError && usersData?.length === 0) {
+    usersContent = <Label message={"users do not found !"} />;
   } else {
     usersContent = usersData?.map((user) => {
       return (
@@ -80,17 +70,7 @@ const EditTaskModal = ({ isOpen, onClose, taskId }) => {
     return <ErrorPage message={taskError.message} status={taskError.status} />;
   }
   if (!isTaskPending && !isTaskError && taskData?.length === 0) {
-    modalContent = (
-      <Label
-        message={"task does not found !"}
-        style={{
-          background: "#FF9D15",
-          border: "2px solid #ff9f1a",
-
-          textTransform: "capitalize",
-        }}
-      />
-    );
+    modalContent = <Label message={"task does not found !"} />;
   } else {
     //
     var task = taskData?.at(0);

@@ -1,3 +1,7 @@
+.link {
+    text-transform: capitalize;
+}
+
 .link * {
     /* border-radius: .2rem; */
     cursor: pointer;
@@ -27,4 +31,8 @@
 
 .active-link {
     background: #1C64F2 !important;
+}
+
+.option-btn {
+    text-transform: capitalize;
 }

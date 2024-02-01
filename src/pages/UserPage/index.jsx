@@ -15,7 +15,7 @@ import Pending from "../../components/icons/Pending";
 import InProgress from "../../components/icons/InProgress";
 import Completed from "../../components/icons/Completed";
 import SearchBar from "../../components/SearchBar";
-import { active_background } from "../../utils/vars";
+
 import ErrorPage from "../ErrorPages";
 import UserInfoCard from "./UserInfoCard";
 import Label from "../../components/Labels";
@@ -62,7 +62,7 @@ const UserPage = () => {
   //
   function searchHandler(searchquery = "") {
     filterCleanup();
-    if (searchquery.length === 0 || !searchquery) {
+    if (searchquery?.length === 0 || !searchquery) {
       setQuery(initialQuery);
     } else {
       setQuery(`/users/${userId}/search/${searchquery}`);
@@ -76,17 +76,7 @@ const UserPage = () => {
   } else if (!userLoader && isUserError) {
     return <ErrorPage message={userError.message} status={userError.status} />;
   } else if (!userLoader && !isUserError && userData?.length === 0) {
-    userContent = (
-      <Label
-        message={"not found !"}
-        style={{
-          background: "#FF9D15",
-          border: "2px solid #ff9f1a",
-
-          textTransform: "capitalize",
-        }}
-      />
-    );
+    userContent = <Label message={"not found !"} />;
   } else {
     user = userData?.at(0);
     userContent = (
@@ -110,18 +100,8 @@ const UserPage = () => {
     return (
       <ErrorPage message={tasksError.message} status={tasksError.status} />
     );
-  } else if (!tasksLoader && !isTasksError && tasksData.length === 0) {
-    taskContent = (
-      <Label
-        message={"tasks do not found !"}
-        style={{
-          background: "#FF9D15",
-          border: "2px solid #ff9f1a",
-
-          textTransform: "capitalize",
-        }}
-      />
-    );
+  } else if (!tasksLoader && !isTasksError && tasksData?.length === 0) {
+    taskContent = <Label message={"tasks do not found !"} />;
   } else {
     taskContent = tasksData?.map((task) => {
       return (
@@ -152,7 +132,7 @@ const UserPage = () => {
               `${user?.username}'s Task`
             ) : (
               <ContentLoader
-                style={{ width: "13rem" }}
+                className="content-loader"
                 speed={2}
                 backgroundColor={"#F4F6FA"}
                 foregroundColor={"#999"}
@@ -178,21 +158,12 @@ const UserPage = () => {
               <div className="dropdown-div">
                 <OptionsLayout
                   title={"status"}
-                  title_style={{
-                    fontSize: "1.1rem",
-                    background: "rgb(149 175 192 / 15%)",
-                    padding: ".3rem",
-                    paddingInline: "1rem",
-                    borderRadius: ".2rem",
-                    marginBottom: ".1rem",
-                    color: "#4834d4",
-                  }}
+                  title_style={{ backgroundColor: "rgb(149 175 192 / 15%)" }}
                 >
                   <OptionBtn
-                    style={{
-                      color: "#3742fa",
-                      background: status === "pending" && active_background,
-                    }}
+                    className={`pending-option ${
+                      status === "pending" && "active-background"
+                    }`}
                     onAction={() => {
                       filterHandler("pending");
                     }}
@@ -201,10 +172,9 @@ const UserPage = () => {
                     <Pending />
                   </OptionBtn>
                   <OptionBtn
-                    style={{
-                      color: "#ffa502",
-                      background: status === "in-progress" && active_background,
-                    }}
+                    className={`in-progress-option ${
+                      status === "in-progress" && "active-background"
+                    }`}
                     onAction={() => {
                       filterHandler("in-progress");
                     }}
@@ -213,10 +183,9 @@ const UserPage = () => {
                     <InProgress />
                   </OptionBtn>
                   <OptionBtn
-                    style={{
-                      color: "#2ed573",
-                      background: status === "completed" && active_background,
-                    }}
+                    className={`completed-option ${
+                      status === "completed" && "active-background"
+                    }`}
                     onAction={() => {
                       filterHandler("completed");
                     }}

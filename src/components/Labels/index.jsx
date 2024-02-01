@@ -1,14 +1,9 @@
 import React from "react";
 import "./Label.css";
 
-const Label = ({ message = "", status, style = {} }) => {
+const Label = ({ message = "", style = {} }) => {
   return (
-    <div
-      className="label"
-      style={{
-        ...style,
-      }}
-    >
+    <div className="label" style={style}>
       {message}
     </div>
   );

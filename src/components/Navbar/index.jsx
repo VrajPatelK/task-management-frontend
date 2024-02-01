@@ -1,6 +1,8 @@
 import React from "react";
 import Logo from "../Logo";
+
 import "./Navbar.css";
+
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { checkSession, getLoggedInUser, isAdmin } from "../../utils/utils";
 import ProfileImg from "../ProfileImg";
@@ -13,10 +15,6 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const loggedInUser = getLoggedInUser();
-  const color =
-    loggedInUser?.user_type === "admin"
-      ? "rgb(252, 48, 48)"
-      : "rgb(103 255 106)";
 
   const isActive = (to) => location.pathname.includes(to);
   const isLoggedIn = checkSession();
@@ -70,12 +68,15 @@ const Navbar = () => {
             <div className=" profile-div">
               <div className="user-info">
                 <div className="username">
-                  <span style={{ color: "gray", marginRight: ".1rem" }}>@</span>
+                  <span>@</span>
                   {loggedInUser?.username}
                 </div>
                 <div
-                  className="role"
-                  style={{ color, border: `2px solid ${color}` }}
+                  className={`role ${
+                    loggedInUser?.user_type === "admin"
+                      ? "admin-css"
+                      : "developer-css"
+                  }`}
                 >
                   {loggedInUser?.user_type}
                 </div>

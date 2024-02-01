@@ -11,7 +11,6 @@ import OptionsLayout from "../../layouts/OptionsLayout";
 import Pending from "../../components/icons/Pending";
 import InProgress from "../../components/icons/InProgress";
 import Completed from "../../components/icons/Completed";
-import { active_background } from "../../utils/vars";
 import SearchBar from "../../components/SearchBar";
 import CreateTask from "../../components/icons/CreateTask";
 import CreateTaskModal from "../../components/Modals/CreateTaskModal";
@@ -48,7 +47,7 @@ const TasksPage = () => {
     );
   } else if (!isPending && isError) {
     return <ErrorPage message={error.message} status={error.status} />;
-  } else if (!isPending && !isError && tasks.length === 0) {
+  } else if (!isPending && !isError && tasks?.length === 0) {
     taskContent = <div>tasks are not found</div>;
   } else {
     taskContent = tasks?.map((task) => {
@@ -83,7 +82,7 @@ const TasksPage = () => {
   //
   function searchHandler(searchquery = "") {
     filterCleanup();
-    if (searchquery.length === 0 || !searchquery) {
+    if (searchquery?.length === 0 || !searchquery) {
       setQuery(initialQuery);
     } else {
       setQuery(`/search/${searchquery}`);
@@ -119,21 +118,12 @@ const TasksPage = () => {
               <div className="dropdown-div">
                 <OptionsLayout
                   title={"status"}
-                  title_style={{
-                    fontSize: "1.1rem",
-                    background: "rgb(149 175 192 / 15%)",
-                    padding: ".3rem",
-                    paddingInline: "1rem",
-                    borderRadius: ".2rem",
-                    marginBottom: ".1rem",
-                    color: "#4834d4",
-                  }}
+                  title_style={{ backgroundColor: "rgb(149 175 192 / 15%)" }}
                 >
                   <OptionBtn
-                    style={{
-                      color: "#3742fa",
-                      background: status === "pending" && active_background,
-                    }}
+                    className={`pending-option ${
+                      status === "pending" && "active-background"
+                    }`}
                     onAction={() => {
                       filterHandler("pending");
                     }}
@@ -142,10 +132,9 @@ const TasksPage = () => {
                     <Pending />
                   </OptionBtn>
                   <OptionBtn
-                    style={{
-                      color: "#ffa502",
-                      background: status === "in-progress" && active_background,
-                    }}
+                    className={`in-progress-option ${
+                      status === "in-progress" && "active-background"
+                    }`}
                     onAction={() => {
                       filterHandler("in-progress");
                     }}
@@ -154,10 +143,9 @@ const TasksPage = () => {
                     <InProgress />
                   </OptionBtn>
                   <OptionBtn
-                    style={{
-                      color: "#2ed573",
-                      background: status === "completed" && active_background,
-                    }}
+                    className={`completed-option ${
+                      status === "completed" && "active-background"
+                    }`}
                     onAction={() => {
                       filterHandler("completed");
                     }}

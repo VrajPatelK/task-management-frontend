@@ -68,6 +68,11 @@
     color: #fff;
 }
 
+.navbar-footer .username span {
+    color: gray;
+    margin-right: .1rem;
+}
+
 .navbar-footer .role {
     width: fit-content;
     padding: .2rem;
@@ -95,10 +100,19 @@
     /* border: 1px solid blue !important; */
 }
 
-
 .active-menu {
     background: #142650;
     border-left: 3px solid blue !important;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
+}
+
+.admin-css {
+    color: rgb(252, 48, 48);
+    border: 1px solid rgb(252, 48, 48);
+}
+
+.developer-css {
+    color: rgb(6, 226, 189);
+    border: 1px solid rgb(6, 226, 189);
 }

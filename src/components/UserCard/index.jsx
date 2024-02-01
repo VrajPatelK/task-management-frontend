@@ -68,14 +68,11 @@ const UserCard = ({
           {displayEditDelete && (
             <div className="button-grp">
               <OptionsLayout title={<Dots3></Dots3>}>
-                <OptionBtn style={{ color: "#3742fa" }} onAction={openModal}>
+                <OptionBtn className="edit-btn" onAction={openModal}>
                   Edit
                   <Edit />
                 </OptionBtn>
-                <OptionBtn
-                  style={{ color: "#ff4757" }}
-                  onAction={userDeleteHandler}
-                >
+                <OptionBtn className="delete-btn" onAction={userDeleteHandler}>
                   Delete
                   <Delete />
                 </OptionBtn>
