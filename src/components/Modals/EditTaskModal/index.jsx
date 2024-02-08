@@ -55,7 +55,7 @@ const EditTaskModal = ({ isOpen, onClose, taskId }) => {
     usersContent = usersData?.map((user) => {
       return (
         <option value={user.id} key={user.id}>
-          {user.id}
+          {user.username}
         </option>
       );
     });

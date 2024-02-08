@@ -49,7 +49,7 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
     usersContent = usersData?.map((user) => {
       return (
         <option value={user.id} key={user.id}>
-          {user.id}
+          {user.username}
         </option>
       );
     });
