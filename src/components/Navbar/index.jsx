@@ -10,6 +10,7 @@ import ProfileImg from "../ProfileImg";
 import Logout from "../icons/Logout";
 import Users from "../icons/Users";
 import Tasks from "../icons/Tasks";
+import ThemeBadge from "../Badges/ThemeBadge";
 
 const Navbar = () => {
   const location = useLocation();
@@ -71,15 +72,13 @@ const Navbar = () => {
                   <span>@</span>
                   {loggedInUser?.username}
                 </div>
-                <div
-                  className={`role ${
-                    loggedInUser?.user_type === "admin"
-                      ? "admin-css"
-                      : "developer-css"
-                  }`}
+                <ThemeBadge
+                  theme={
+                    loggedInUser?.user_type === "admin" ? "danger" : "primary"
+                  }
                 >
                   {loggedInUser?.user_type}
-                </div>
+                </ThemeBadge>
               </div>
               <div
                 className="img-div"

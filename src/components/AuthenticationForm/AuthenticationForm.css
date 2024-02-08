@@ -8,7 +8,9 @@
 }
 
 .auth-form .auth-form-header svg {
-    width: 1.2rem;
+    /* border: 2px solid blue; */
+    width: 2.5rem !important;
+    color: #fff;
 }
 
 /* .auth-form .auth-form-body {
@@ -78,12 +80,14 @@
 
 .auth-form .auth-form-header {
     /* border: 2px solid red; */
-    /* border-bottom: 3px solid #142650; */
     padding-bottom: .5rem;
     font-size: xx-large;
     font-weight: 600;
     color: #fff;
+    width: fit-content;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    column-gap: .5rem;
+    margin-inline: auto;
 }

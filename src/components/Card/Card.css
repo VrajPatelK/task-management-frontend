@@ -35,8 +35,7 @@
 
 .card-footer .deadline {
     /* border: 2px solid salmon; */
-    height: fit-content;
-    color: red;
+    font-weight: 600;
 }
 
 .card-footer .profile {

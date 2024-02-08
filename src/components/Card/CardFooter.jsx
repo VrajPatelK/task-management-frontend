@@ -17,6 +17,7 @@ import {
 import { updateTaskStatus } from "../../apis/tasks";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
+import ThemeBadge from "../Badges/ThemeBadge";
 
 const CardFooter = ({
   taskId,
@@ -68,46 +69,52 @@ const CardFooter = ({
 
   return (
     <div className="card-footer">
-      <OptionsLayout
-        title={
-          <SmallBadge
-            style={{
-              color: statusProperty.color,
-            }}
+      <div className="status">
+        <OptionsLayout
+          title={
+            <SmallBadge
+              style={{
+                color: statusProperty.color,
+              }}
+            >
+              {statusProperty.icon}
+            </SmallBadge>
+          }
+          exptraPadding={false}
+        >
+          <OptionBtn
+            className={`pending-option ${
+              status === "pending" && "active-background"
+            }`}
+            onAction={() => changeStatusHandler("pending")}
           >
-            {statusProperty.icon}
-          </SmallBadge>
-        }
-      >
-        <OptionBtn
-          className={`pending-option ${
-            status === "pending" && "active-background"
-          }`}
-          onAction={() => changeStatusHandler("pending")}
-        >
-          pending
-          {<Pending />}
-        </OptionBtn>
-        <OptionBtn
-          className={`in-progress-option ${
-            status === "in-progress" && "active-background"
-          }`}
-          onAction={() => changeStatusHandler("in-progress")}
-        >
-          in progress
-          <InProgress />
-        </OptionBtn>
-        <OptionBtn
-          className={`completed-option ${
-            status === "completed" && "active-background"
-          }`}
-          onAction={() => changeStatusHandler("completed")}
-        >
-          completed
-          <Completed />
-        </OptionBtn>
-      </OptionsLayout>
-      <div className="deadline">{formatedDate}</div>
+            pending
+            {<Pending />}
+          </OptionBtn>
+          <OptionBtn
+            className={`in-progress-option ${
+              status === "in-progress" && "active-background"
+            }`}
+            onAction={() => changeStatusHandler("in-progress")}
+          >
+            in progress
+            <InProgress />
+          </OptionBtn>
+          <OptionBtn
+            className={`completed-option ${
+              status === "completed" && "active-background"
+            }`}
+            onAction={() => changeStatusHandler("completed")}
+          >
+            completed
+            <Completed />
+          </OptionBtn>
+        </OptionsLayout>
+      </div>
+      <div className="deadline">
+        <ThemeBadge theme={"danger"}>{formatedDate}</ThemeBadge>
+      </div>
+
       {displayProfileIcon && (
         <div className="profile">
           <Link to={`/users/${assigned_to}`}>

@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import "./AuthenticationForm.css";
 import { userLogin } from "../../apis/users";
 import { useNavigate } from "react-router-dom";
+import User from "../icons/User";
 
 const AuthenticationForm = () => {
   const navigate = useNavigate();
@@ -31,7 +32,10 @@ const AuthenticationForm = () => {
 
   return (
     <div className="auth-form">
-      <div className="auth-form-header">Login</div>
+      <div className="auth-form-header">
+        <span>Login</span>
+        <User />
+      </div>
       <div className="auth-form-body">
         <form ref={formRef} onSubmit={submitHandler} method="POST">
           <div>

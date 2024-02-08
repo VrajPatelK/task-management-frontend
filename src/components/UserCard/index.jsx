@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import { deleteUser } from "../../apis/users";
 import { Link } from "react-router-dom";
 import EditUserModal from "../Modals/EditUserModal";
+import ThemeBadge from "../Badges/ThemeBadge";
 
 const UserCard = ({
   userId,
@@ -62,7 +63,11 @@ const UserCard = ({
             </div>
           </Link>
           <div className="email">{email}</div>
-          <div>{user_type}</div>
+          <div className="userTypeDiv">
+            <ThemeBadge theme={user_type === "admin" ? "danger" : "primary"}>
+              {user_type}
+            </ThemeBadge>
+          </div>
 
           {/* edit & delete options */}
           {displayEditDelete && (

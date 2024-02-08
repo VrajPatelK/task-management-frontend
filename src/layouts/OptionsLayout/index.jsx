@@ -7,6 +7,7 @@ const OptionsLayout = ({
   title_style = {},
   children,
   droparrow = false,
+  exptraPadding = true,
 }) => {
   const [display, setDisplay] = useState(false);
   return (
@@ -18,7 +19,7 @@ const OptionsLayout = ({
       <div
         onMouseEnter={() => setDisplay(true)}
         style={title_style}
-        className="title"
+        className={`title ${exptraPadding ? "extra-padding" : ""}`}
       >
         {title}
         {droparrow && <DropArrow />}

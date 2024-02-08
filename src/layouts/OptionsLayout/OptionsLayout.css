@@ -10,11 +10,14 @@
     text-transform: capitalize;
     column-gap: .5rem;
     font-size: 1.1rem;
-    padding: .3rem;
-    padding-inline: 1rem;
     border-radius: .2rem;
     margin-bottom: .1rem;
     color: #4834d4;
+}
+
+.dropdown-layout .extra-padding {
+    padding: .3rem;
+    padding-inline: 1rem;
 }
 
 .option-layout {

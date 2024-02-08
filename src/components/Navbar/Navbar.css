@@ -23,7 +23,7 @@
     border-left: 3px solid #031926;
     cursor: pointer;
     height: fit-content;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     text-transform: capitalize;
     display: flex;
@@ -80,7 +80,6 @@
     margin-top: .5rem;
     padding-inline: 1rem;
     font-size: .9rem;
-    background: #031926;
 }
 
 
@@ -105,14 +104,4 @@
     border-left: 3px solid blue !important;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
-}
-
-.admin-css {
-    color: rgb(252, 48, 48);
-    border: 1px solid rgb(252, 48, 48);
-}
-
-.developer-css {
-    color: rgb(6, 226, 189);
-    border: 1px solid rgb(6, 226, 189);
 }
