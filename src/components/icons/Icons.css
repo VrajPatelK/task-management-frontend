@@ -6,3 +6,9 @@
 .user {
     color: gray;
 }
+
+.upload-loader {
+    width: 2rem !important;
+    height: 2rem !important;
+
+}

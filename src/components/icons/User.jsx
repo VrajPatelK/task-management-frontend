@@ -4,7 +4,6 @@ import "./Icons.css";
 const User = (props) => {
   return (
     <svg
-      className="user"
       style={{ width: props.style?.width ? props.style.width : ".8rem" }}
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"

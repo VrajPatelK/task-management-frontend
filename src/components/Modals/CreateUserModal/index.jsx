@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./CreateUserModal.css";
 import ModalLayouts from "../../../layouts/ModalLayouts";
 import CreateUser from "../../icons/CreateUser";
@@ -8,9 +8,11 @@ import { queryClient } from "../../../utils/vars";
 
 import Plus from "../../icons/Plus";
 import { createUser } from "../../../apis/users";
+import ImageUpload from "../../ImageUpload";
 
 const CreateUserModal = ({ isOpen, onClose }) => {
   const formRef = useRef(null);
+  const [newimgurl, setNewimgurl] = useState(undefined);
 
   // use mutation
   const { mutate } = useMutation({
@@ -33,6 +35,7 @@ const CreateUserModal = ({ isOpen, onClose }) => {
       email: formData.get("email"),
       password: formData.get("password"),
       user_type: formData.get("user_type"),
+      profile_img: newimgurl,
     };
     mutate(
       { body },
@@ -54,6 +57,10 @@ const CreateUserModal = ({ isOpen, onClose }) => {
         </div>
         <div className="modal-body">
           <form ref={formRef} onSubmit={submitHandler} method="POST">
+            <ImageUpload
+              onImageUpload={(u) => setNewimgurl(u)}
+              onImageRemove={() => setNewimgurl(undefined)}
+            />
             <div>
               <input type="text" name="username" placeholder="@ username" />
             </div>

@@ -14,7 +14,9 @@ var forCompleted = {
   color: "#2ed573",
   icon: <Completed />,
 };
+const defaultImageUrl =
+  "https://firebasestorage.googleapis.com/v0/b/task-management-fbb64.appspot.com/o/profile_images%2Fdefault-profile-img.png?alt=media&token=dbab22ee-13fe-4b80-b7a5-7209944a775a";
 
 const queryClient = new QueryClient();
 
-export { forCompleted, forInProgress, forPeding, queryClient };
+export { forCompleted, forInProgress, forPeding, queryClient, defaultImageUrl };

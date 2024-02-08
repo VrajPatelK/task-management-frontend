@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./EditUserModal.css";
 import ModalLayouts from "../../../layouts/ModalLayouts";
 import EditUser from "../../icons/EditUser";
@@ -11,9 +11,12 @@ import Edit from "../../icons/Edit";
 import Loader from "../../Loader";
 import Label from "../../Labels";
 import ErrorPage from "../../../pages/ErrorPages";
+import ImageUpload from "../../ImageUpload";
 
 const EditUserModal = ({ isOpen, onClose, userId }) => {
   const formRef = useRef(null);
+  const [newimgurl, setNewimgurl] = useState(undefined);
+
   const {
     data: userData,
     isLoading: userLoader,
@@ -42,6 +45,11 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
     user = userData?.at(0);
     modalContent = (
       <form ref={formRef} onSubmit={submitHandler} method="POST">
+        <ImageUpload
+          imgUrl={user?.profile_img}
+          onImageUpload={(u) => setNewimgurl(u)}
+          onImageRemove={() => setNewimgurl(undefined)}
+        />
         <div>
           <input
             type="text"
@@ -100,6 +108,7 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
       username: formData.get("username"),
       email: formData.get("email"),
       user_type: formData.get("user_type"),
+      profile_img: newimgurl ? newimgurl : user?.profile_img,
     };
 
     if (

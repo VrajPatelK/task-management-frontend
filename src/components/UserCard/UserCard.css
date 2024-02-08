@@ -19,10 +19,14 @@
 }
 
 .user-card-layout .profile-img-div {
-    border: 2px solid rgba(128, 128, 128, 0.104);
+    /* border: 2px solid rgba(128, 128, 128, 0.104); */
     height: fit-content;
     border-radius: .5rem;
     padding: .1rem;
+}
+
+.user-card-layout .profile-img-div img {
+    border-radius: .5rem;
 }
 
 .user-details .button-grp {
