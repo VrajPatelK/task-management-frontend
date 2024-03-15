@@ -1,0 +1,13 @@
+.label {
+    /* border: 2px solid red; */
+    color: #fff;
+    width: fit-content;
+    padding: 1rem;
+    border-radius: .2rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-inline: auto;
+    font-weight: 500;
+    background: #FF9D15;
+    border: 2px solid #ff9f1a;
+    text-transform: capitalize;
+}

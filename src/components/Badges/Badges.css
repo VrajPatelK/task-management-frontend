@@ -1,0 +1,11 @@
+.smallBadge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .2rem;
+    border: 1px solid rgba(128, 128, 128, 0.301);
+    padding: .2rem .5rem;
+    border-radius: .5rem;
+    background: #F4F6FA;
+    font-size: .8rem;
+}

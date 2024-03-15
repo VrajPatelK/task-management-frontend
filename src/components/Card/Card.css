@@ -1,0 +1,68 @@
+.card-header {
+    /* border: 2px solid blue; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header .title {
+    /* border: 2px solid salmon; */
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.card-header .button-grp {
+    /* border: 2px solid salmon; */
+    min-width: .3rem;
+    min-height: .4rem;
+}
+
+/* .card-body {
+    border: 2px solid green;
+} */
+
+.card-footer {
+    /* border: 2px solid purple; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.card-footer .status {
+    /* border: 2px solid salmon; */
+    height: fit-content;
+}
+
+.card-footer .deadline {
+    /* border: 2px solid salmon; */
+    font-weight: 600;
+}
+
+.card-footer .profile {
+    /* border: 2px solid salmon; */
+    border-radius: .5rem;
+    background: rgba(243, 241, 241, 0.451);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.3rem;
+    height: 2.3rem;
+    padding: .1rem;
+    cursor: pointer;
+}
+
+.card-footer .profile:hover {
+    box-shadow: none;
+}
+
+.card-footer .profile {
+    display: inline;
+}
+
+.card-footer .profile img {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    border-radius: .5rem;
+    width: 100%;
+    width: 2.3rem;
+    height: 2.3rem;
+}

@@ -1,0 +1,107 @@
+.user-page {
+    /* border: 2px solid red; */
+    display: grid;
+    grid-template-columns: 77% 23%;
+    position: relative;
+    min-height: 100%;
+    /* column-gap: 1rem; */
+}
+
+.user-page .user-tasks-layout {
+    /* border: 2px solid salmon; */
+    padding-right: 2rem;
+}
+
+.user-page .user-details-layout {
+    /* border: 2px solid brown; */
+    background: linear-gradient(#7e0cf0, #401988);
+    background: linear-gradient(#74b9ff, #401988);
+    background: linear-gradient(#0984e3, #74b9ff6e, #0984e300);
+    color: white;
+    border-radius: .5rem;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+    padding-block: 1rem;
+}
+
+.user-page .user-details {
+    /* border: 2px solid red; */
+    padding: 1rem;
+}
+
+.user-page .user-details {
+    display: flex;
+    flex-direction: column;
+    row-gap: .8rem;
+}
+
+.user-page .user-details .user-row-1 {
+    border: 2px solid;
+    background: #fff;
+    /* width: 70%; */
+    border-radius: .5rem;
+    margin-inline: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .3rem;
+}
+
+.user-page .user-details .user-row-1 img {
+    border-radius: .5rem;
+}
+
+.user-page .user-details .user-row-2 {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-page .user-details .user-row-2 .user-username {
+    /* border: 2px solid red; */
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #0984e3;
+
+}
+
+.user-page .user-details .user-row-3 .user-contact-info {
+
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #0984e3;
+    text-decoration: underline;
+    margin-bottom: .5rem;
+}
+
+.user-page .user-row-3 {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    row-gap: .2rem;
+    color: #0984e3;
+}
+
+.user-page .user-row-3 .user-email {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.user-page .user-row-3 svg {
+
+    width: .8rem;
+    color: #0984e3;
+}
+
+.user-username span {
+    margin-right: .2rem;
+}

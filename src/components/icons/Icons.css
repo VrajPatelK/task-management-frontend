@@ -1,0 +1,14 @@
+.dots-3 {
+    color: gray;
+    width: .25rem !important;
+}
+
+.user {
+    color: gray;
+}
+
+.upload-loader {
+    width: 2rem !important;
+    height: 2rem !important;
+
+}

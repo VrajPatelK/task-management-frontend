@@ -1,0 +1,97 @@
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+  * {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #F4F6FA;
+    height: 100vh;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+  #root,
+  .App {
+    height: 100%;
+  }
+
+  .rmv-btn-css {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .edit-btn {
+    color: #3742fa;
+  }
+
+  .delete-btn {
+    color: #ff4757;
+  }
+
+  .pending-option {
+    color: #3742fa;
+  }
+
+  .in-progress-option {
+    color: #ffa502;
+  }
+
+  .completed-option {
+    color: #2ed573;
+  }
+
+  .active-background {
+    background: #f5f6fa !important;
+  }
+
+  .content-loader {
+    width: 13rem;
+  }
+
+  .danger,
+  .primary {
+    font-size: small;
+    width: fit-content;
+    padding-block: .1rem;
+    padding-inline: .5rem;
+    border-radius: .2rem;
+  }
+
+  .bold {
+    font-weight: 600;
+  }
+
+  .danger {
+    color: rgb(252, 48, 48);
+    border: 1px solid rgb(252, 48, 48);
+    font-size: small;
+    width: fit-content;
+    padding-block: .1rem;
+    padding-inline: .5rem;
+    border-radius: .2rem;
+    background-color: rgba(252, 48, 48, 0.07);
+  }
+
+  .primary {
+    color: rgb(0, 172, 144);
+    border: 1px solid rgb(6, 226, 189);
+    background-color: rgba(6, 226, 189, 0.093);
+  }

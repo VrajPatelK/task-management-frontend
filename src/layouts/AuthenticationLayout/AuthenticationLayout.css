@@ -1,0 +1,22 @@
+.auth-body-layout {
+    /* border: 2px solid green; */
+
+    /* width: fit-content; */
+    background: #031926;
+
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-body-content {
+    /* border: 2px solid red; */
+    /* background: #fff; */
+    padding: 20px;
+    border-radius: 8px;
+    max-height: fit-content;
+    overflow: none !important;
+    overflow-y: auto;
+    position: relative;
+}
